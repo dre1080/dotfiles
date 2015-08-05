@@ -46,37 +46,70 @@ need_push () {
   fi
 }
 
-ruby_version() {
-  if (( $+commands[rbenv] ))
-  then
-    echo "$(rbenv version | awk '{print $1}')"
-  fi
-
-  if (( $+commands[rvm-prompt] ))
-  then
-    echo "$(rvm-prompt | awk '{print $1}')"
-  fi
-}
-
-rb_prompt() {
-  if ! [[ -z "$(ruby_version)" ]]
-  then
-    echo "%{$fg_bold[yellow]%}$(ruby_version)%{$reset_color%} "
-  else
-    echo ""
-  fi
+user_info() {
+  echo "%{$fg_bold[yellow]%}%n@%m%{$reset_color%} "
 }
 
 directory_name() {
   echo "%{$fg_bold[cyan]%}%1/%\/%{$reset_color%}"
 }
 
-export PROMPT=$'\n$(rb_prompt)in $(directory_name) $(git_dirty)$(need_push)\n› '
+export PROMPT=$'\n$(user_info)in $(directory_name) $(git_dirty)$(need_push)\n› '
 set_prompt () {
-  export RPROMPT="%{$fg_bold[cyan]%}%{$reset_color%}"
+  export RPROMPT="%{$fg_bold[cyan]%}${cmd_exec_time}${git_arrows}%{$reset_color%}"
+}
+
+# turns seconds into human readable time
+# 165392 => 1d 21h 56m 32s
+# https://github.com/sindresorhus/pretty-time-zsh
+human_time() {
+  echo -n " "
+  local tmp=$1
+  local days=$(( tmp / 60 / 60 / 24 ))
+  local hours=$(( tmp / 60 / 60 % 24 ))
+  local minutes=$(( tmp / 60 % 60 ))
+  local seconds=$(( tmp % 60 ))
+  (( $days > 0 )) && echo -n "${days}d "
+  (( $hours > 0 )) && echo -n "${hours}h "
+  (( $minutes > 0 )) && echo -n "${minutes}m "
+  echo "${seconds}s"
+}
+
+# displays the exec time of the last command if set threshold was exceeded
+check_cmd_exec_time() {
+  local stop=$EPOCHSECONDS
+  local start=${cmd_timestamp:-$stop}
+  (( elapsed = stop - start ))
+  (($elapsed > ${CMD_MAX_EXEC_TIME:=5})) && human_time $elapsed
+}
+
+check_git_arrows() {
+  # check if there is an upstream configured for this branch
+  command git rev-parse --abbrev-ref @'{u}' &>/dev/null || return
+
+  local arrows=""
+  (( $(command git rev-list --right-only --count HEAD...@'{u}' 2>/dev/null) > 0 )) && arrows='⇣'
+  (( $(command git rev-list --left-only --count HEAD...@'{u}' 2>/dev/null) > 0 )) && arrows+='⇡'
+  # output the arrows
+  [[ "$arrows" != "" ]] && echo " ${arrows}"
+}
+
+preexec() {
+  cmd_timestamp=$EPOCHSECONDS
 }
 
 precmd() {
   title "zsh" "%m" "%55<...<%~"
+
+  # store exec time for when preprompt gets re-rendered
+  cmd_exec_time=$(check_cmd_exec_time)
+  cmd_timestamp=
+
+  # check for git arrows
+  git_arrows=$(check_git_arrows)
+
   set_prompt
+
+  # remove the cmd_timestamp, indicating that precmd has completed
+  unset cmd_timestamp
 }
