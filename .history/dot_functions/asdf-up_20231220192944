@@ -1,0 +1,31 @@
+# Usage: asdf-up
+# Description: update all ASDF plugins to their latest versions
+asdf-up () {
+  log () {
+    echo
+    printf "%s %s\n" "->" "$1"
+  }
+
+  log "Updating all asdf-plugin remotes..."
+
+  asdf plugin update --all
+
+  log "Updating each plugin reference to the latest revision..."
+
+  cat ~/.tool-versions \
+    | awk '{print $1}' \
+    | xargs -I {} bash -c 'echo {} $(asdf latest {})' > ~/.tool-versions.new; \
+  cp ~/.tool-versions ~/.tool-versions.bk; \
+  mv ~/.tool-versions.new ~/.tool-versions
+
+  log "Old revision versions:"
+  cat ~/.tool-versions.bk
+
+  log "New revision versions:"
+  cat ~/.tool-versions
+
+  asdf install
+
+  echo
+  log "Done, bye! 👋"
+}

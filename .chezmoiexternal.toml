@@ -1,0 +1,9 @@
+[".zgenom"]
+  type = "git-repo"
+  url = "https://github.com/jandamm/zgenom.git"
+  refreshPeriod = "168h"
+[".asdf"]
+  type = "git-repo"
+  url = "https://github.com/asdf-vm/asdf.git"
+  refreshPeriod = "168h"
+  pull.args = ["origin", "master"]

@@ -1,0 +1,6 @@
+# Usage: run-bg "ffmpeg -i video.mp4 -c:v copy -crf 40 out.mp4"
+# Description: start detached background process
+run-bg () {
+  echo "Starting detached process '${1}'..."
+  exec $@ </dev/null &>/dev/null &
+}

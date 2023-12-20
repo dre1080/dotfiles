@@ -1,0 +1,9 @@
+#!/bin/bash
+
+set -eu
+
+sudo apt update
+sudo apt install -y --no-install-recommends build-essential curl git wget lsd bat
+
+echo "$(which zsh)" | sudo tee -a /etc/shells
+chsh -s "$(which zsh)"

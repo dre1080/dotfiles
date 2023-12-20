@@ -1,0 +1,101 @@
+##
+# Requirements:
+#   zgenom  - https://github.com/jandamm/zgenom
+#   direnv  - https://github.com/direnv/direnv
+#   fzf     - https://github.com/junegunn/fzf
+#   asdf    - https://asdf-vm.com (with plugins: elixir, erlang, nodejs, php, ruby, golang, sqlite)
+#   podman  - https://podman.io/docs/installation
+#   compose - https://docs.docker.com/compose/install/standalone
+#   flyctl  - https://github.com/superfly/flyctl
+#   gh      - https://github.com/cli/cli/blob/trunk/docs/install_linux.md
+##
+
+# your project folder that we can `c [tab]` to
+export PROJECTS="${HOME}/Code"
+export PATH="${HOME}/.local/bin:${PATH}"
+
+# add .functions to path
+fpath=($HOME/.functions $fpath)
+autoload -U $HOME/.functions/*(:t)
+
+# reset when .zshrc changes
+ZGEN_RESET_ON_CHANGE=($HOME/.zshrc)
+
+# disable auto update for ohmyzsh
+DISABLE_AUTO_UPDATE="true"
+
+# skip the verification of insecure directories
+ZSH_DISABLE_COMPFIX="true"
+
+# add custom highlighters
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern regexp root)
+
+# load zgenom
+source "${HOME}/.zgenom/zgenom.zsh"
+export PATH="${HOME}/.zgenom/bin:${PATH}"
+
+# if the init script doesn't exist
+if ! zgenom saved; then
+  # plugins
+  zgenom ohmyzsh
+  zgenom ohmyzsh plugins/asdf
+  zgenom ohmyzsh plugins/command-not-found
+  zgenom ohmyzsh plugins/direnv
+  zgenom ohmyzsh plugins/fzf
+  zgenom ohmyzsh plugins/git
+  zgenom ohmyzsh plugins/history-substring-search
+  zgenom ohmyzsh plugins/ubuntu
+  zgenom ohmyzsh plugins/z
+
+  zgenom load zsh-users/zsh-syntax-highlighting
+  zgenom load zsh-users/zsh-history-substring-search
+
+  # install theme
+  zgenom load spaceship-prompt/spaceship-prompt spaceship
+
+  # generate the init script from plugins above
+  zgenom save
+
+  # Compile your zsh files
+  zgenom compile "${HOME}/.zshrc"
+fi
+
+# preferred editor for local and remote sessions
+if [[ -n $SSH_CONNECTION ]]; then
+  # SSH mode
+  export EDITOR="nano"
+else
+  # local terminal mode
+  export EDITOR="code-insiders -w"
+fi
+
+# setup erlang/elixir/iex
+if (( $+commands[erl] )); then
+  # enable IEx history
+  # see: https://hexdocs.pm/iex/IEx.html#module-shell-history
+  export ERL_AFLAGS="-kernel shell_history enabled"
+
+  # build erlang docs
+  # see: https://github.com/asdf-vm/asdf-erlang#getting-erlang-documentation
+  export KERL_BUILD_DOCS=yes
+  export KERL_INSTALL_HTMLDOCS=no
+  export KERL_INSTALL_MANPAGES=no
+fi
+
+# setup ASDF golang GOROOT
+ASDF_GOLANG_ENV_FILE="${HOME}/.asdf/plugins/golang/set-env.zsh"
+[[ -f "${ASDF_GOLANG_ENV_FILE}" ]] && . "${ASDF_GOLANG_ENV_FILE}"
+
+# setup rubygems
+(( $+commands[gem] )) && export PATH="$(gem environment gemdir)/bin:${PATH}"
+
+# setup composer
+(( $+commands[composer] )) && export COMPOSER_IGNORE_PLATFORM_REQS=1
+
+{{ if eq .chezmoi.os "linux" }}
+{{   if (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
+export WIN_HOME=$(wslpath "$(wslvar USERPROFILE)")
+{{   end }}
+{{ end }}
+
+source "${HOME}/.aliases"
