@@ -4,9 +4,13 @@ alias docker=podman
 alias code=code-insiders
 alias cz=chezmoi
 alias reload!='. ~/.zshrc'
-alias cls='clear' # Good 'ol Clear Screen command
+alias cls='clear'
 alias -g -- -h='-h 2>&1 | bat --language=help --style=plain'
 alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
-
-# get erlang version
 alias erlv="erl -eval '{ok, Version} = file:read_file(filename:join([code:root_dir(), \"releases\", erlang:system_info(otp_release), \"OTP_VERSION\"])), io:fwrite(Version), halt().' -noshell"
+
+{{ if eq .chezmoi.os "linux" }}
+{{   if (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
+alias rm='echo "Please use the '\''trash'\'' command to delete files/folders.\nFor more info, run '\''man trash'\''."; false'
+{{   end }}
+{{ end }}

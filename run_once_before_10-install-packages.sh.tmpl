@@ -18,7 +18,7 @@ curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | \
 
 {{ if eq .chezmoi.os "linux" }}
 {{   if (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
-sudo apt install wslu
+sudo apt install wslu trash-cli
 {{   end }}
 {{ end }}
 
