@@ -82,6 +82,10 @@ if (( $+commands[erl] )); then
   export KERL_INSTALL_MANPAGES=no
 fi
 
+# setup flyctl
+export FLYCTL_INSTALL="${HOME}/.fly"
+export PATH="${FLYCTL_INSTALL}/bin:${PATH}"
+
 # setup ASDF golang GOROOT
 ASDF_GOLANG_ENV_FILE="${HOME}/.asdf/plugins/golang/set-env.zsh"
 [[ -f "${ASDF_GOLANG_ENV_FILE}" ]] && . "${ASDF_GOLANG_ENV_FILE}"
