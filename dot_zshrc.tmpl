@@ -61,7 +61,7 @@ if ! zgenom saved; then
 fi
 
 # preferred editor for local and remote sessions
-if [[ -n $SSH_CONNECTION ]]; then
+if [ -n $SSH_CONNECTION ]; then
   # SSH mode
   export EDITOR="nano"
 else
@@ -88,7 +88,7 @@ export PATH="${FLYCTL_INSTALL}/bin:${PATH}"
 
 # setup ASDF golang GOROOT
 ASDF_GOLANG_ENV_FILE="${HOME}/.asdf/plugins/golang/set-env.zsh"
-[[ -f "${ASDF_GOLANG_ENV_FILE}" ]] && . "${ASDF_GOLANG_ENV_FILE}"
+[ -f "${ASDF_GOLANG_ENV_FILE}" ] && . "${ASDF_GOLANG_ENV_FILE}"
 
 # setup rubygems
 (( $+commands[gem] )) && export PATH="$(gem environment gemdir)/bin:${PATH}"

@@ -8,21 +8,29 @@ WSL_DEPS=""
 {{   end }}
 {{ end }}
 
-curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | \
-    sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg \
-  && sudo chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg \
-  && echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | \
-    sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null \
-  && sudo apt update
+if [ ! -x "$(command -v gh)" ]; then
+  curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | \
+      sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg \
+    && sudo chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg \
+    && echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | \
+      sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null \
+    && sudo apt update
+fi
 
 sudo apt install -y --no-install-recommends direnv fzf podman gh ffmpeg $WSL_DEPS
 
-sudo curl -SL -C - https://github.com/docker/compose/releases/download/v2.23.3/docker-compose-linux-x86_64 \
-    -o /usr/local/bin/docker-compose \
-  && sudo chmod +x /usr/local/bin/docker-compose
+if [ ! -x "$(command -v docker-compose)" ]; then
+  sudo curl -SL -C - https://github.com/docker/compose/releases/download/v2.23.3/docker-compose-linux-x86_64 \
+      -o /usr/local/bin/docker-compose \
+    && sudo chmod +x /usr/local/bin/docker-compose
+fi
 
-sudo curl -L -C - https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp \
-    -o /usr/local/bin/yt-dlp \
-  && sudo chmod a+rx /usr/local/bin/yt-dlp
+if [ ! -x "$(command -v yt-dlp)" ]; then
+  sudo curl -L -C - https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp \
+      -o /usr/local/bin/yt-dlp \
+    && sudo chmod a+rx /usr/local/bin/yt-dlp
+fi
 
-curl -L https://fly.io/install.sh | sh
+if [ ! -f "${HOME}/.fly/bin/flyctl" ]; then
+  curl -L https://fly.io/install.sh | sh
+fi
