@@ -27,9 +27,6 @@ DISABLE_AUTO_UPDATE="true"
 # skip the verification of insecure directories
 ZSH_DISABLE_COMPFIX="true"
 
-# add custom highlighters
-ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern regexp root)
-
 # load zgenom
 source "${HOME}/.zgenom/zgenom.zsh"
 export PATH="${HOME}/.zgenom/bin:${PATH}"
@@ -47,11 +44,10 @@ if ! zgenom saved; then
   zgenom ohmyzsh plugins/ubuntu
   zgenom ohmyzsh plugins/z
 
-  zgenom load zsh-users/zsh-syntax-highlighting
-  zgenom load zsh-users/zsh-history-substring-search
+  zgenom load z-shell/F-Sy-H . main
 
   # install theme
-  zgenom load spaceship-prompt/spaceship-prompt spaceship
+  zgenom load sindresorhus/pure
 
   # generate the init script from plugins above
   zgenom save
