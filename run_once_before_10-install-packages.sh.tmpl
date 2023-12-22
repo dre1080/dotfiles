@@ -22,13 +22,13 @@ sudo apt install -y --no-install-recommends direnv fzf podman gh ffmpeg $WSL_DEP
 pipx install lastversion
 
 if [ ! -x "$(command -v docker-compose)" ]; then
-  lastversion download docker/compose --format assets --filter linux-x86_64$ -o docker-compose \
+  ${HOME}/.local/bin/lastversion download docker/compose --format assets --filter linux-x86_64$ -o docker-compose \
     && sudo mv docker-compose /usr/local/bin/ \
     && sudo chmod +x /usr/local/bin/docker-compose
 fi
 
 if [ ! -x "$(command -v yt-dlp)" ]; then
-  lastversion download yt-dlp/yt-dlp --format assets --filter ^yt-dlp$ \
+  ${HOME}/.local/bin/lastversion download yt-dlp/yt-dlp --format assets --filter ^yt-dlp$ \
     && sudo mv yt-dlp /usr/local/bin/ \
     && sudo chmod +x /usr/local/bin/yt-dlp
 fi
@@ -38,7 +38,7 @@ if [ ! -f "${HOME}/.fly/bin/flyctl" ]; then
 fi
 
 if [ ! -x "$(command -v diff-so-fancy)" ]; then
-  lastversion download so-fancy/diff-so-fancy --format assets --filter ^diff-so-fancy$ \
+  ${HOME}/.local/bin/lastversion download so-fancy/diff-so-fancy --format assets --filter ^diff-so-fancy$ \
     && sudo mv diff-so-fancy /usr/local/bin/ \
     && sudo chmod +x /usr/local/bin/diff-so-fancy
 fi
