@@ -1,10 +1,8 @@
 [init]
 	defaultBranch = main
 [credential "https://github.com"]
-	helper = 
 	helper = !/usr/bin/gh auth git-credential
 [credential "https://gist.github.com"]
-	helper = 
 	helper = !/usr/bin/gh auth git-credential
 [user]
 	name = ando
@@ -12,3 +10,21 @@
 [core]
 	autocrlf = false
 	eol = lf
+  pager = diff-so-fancy | less --tabs=4 -RF
+[interactive]
+  diffFilter = diff-so-fancy --patch
+[color]
+  ui = true
+[color "diff-highlight"]
+  oldNormal = red bold
+  oldHighlight = red bold 52
+  newNormal = green bold
+  newHighlight = green bold 22
+[color "diff"]
+  meta = 11
+  frag = magenta bold
+  func = 146 bold
+  commit = yellow bold
+  old = red bold
+  new = green bold
+  whitespace = red reverse

@@ -36,3 +36,9 @@ fi
 if [ ! -f "${HOME}/.fly/bin/flyctl" ]; then
   curl -L https://fly.io/install.sh | sh
 fi
+
+if [ ! -x "$(command -v diff-so-fancy)" ]; then
+  lastversion download so-fancy/diff-so-fancy --format assets --filter ^diff-so-fancy$ \
+    && sudo mv diff-so-fancy /usr/local/bin/ \
+    && sudo chmod +x /usr/local/bin/diff-so-fancy
+fi
