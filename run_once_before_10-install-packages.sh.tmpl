@@ -19,16 +19,18 @@ fi
 
 sudo apt install -y --no-install-recommends direnv fzf podman gh ffmpeg $WSL_DEPS
 
+pipx install lastversion
+
 if [ ! -x "$(command -v docker-compose)" ]; then
-  sudo curl -SL -C - https://github.com/docker/compose/releases/download/v2.23.3/docker-compose-linux-x86_64 \
-      -o /usr/local/bin/docker-compose \
+  lastversion download docker/compose --format assets --filter linux-x86_64$ -o docker-compose \
+    && sudo mv docker-compose /usr/local/bin/ \
     && sudo chmod +x /usr/local/bin/docker-compose
 fi
 
 if [ ! -x "$(command -v yt-dlp)" ]; then
-  sudo curl -L -C - https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp \
-      -o /usr/local/bin/yt-dlp \
-    && sudo chmod a+rx /usr/local/bin/yt-dlp
+  lastversion download yt-dlp/yt-dlp --format assets --filter ^yt-dlp$ \
+    && sudo mv yt-dlp /usr/local/bin/ \
+    && sudo chmod +x /usr/local/bin/yt-dlp
 fi
 
 if [ ! -f "${HOME}/.fly/bin/flyctl" ]; then
