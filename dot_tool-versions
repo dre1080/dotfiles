@@ -5,3 +5,4 @@ sqlite 3.44.2
 golang 1.21.5
 php 8.3.0
 ruby 3.2.2
+rust 1.74.1
