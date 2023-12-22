@@ -12,7 +12,6 @@
 
 # your project folder that we can `c [tab]` to
 export PROJECTS="${HOME}/Code"
-export PATH="${HOME}/.local/bin:${PATH}"
 
 # add .functions to path
 fpath=($HOME/.functions $fpath)
@@ -28,12 +27,10 @@ DISABLE_AUTO_UPDATE="true"
 ZSH_DISABLE_COMPFIX="true"
 
 # load zgenom
-source "${HOME}/.zgenom/zgenom.zsh"
-export PATH="${HOME}/.zgenom/bin:${PATH}"
+. "${HOME}/.zgenom/zgenom.zsh"
+export PATH="${HOME}/.zgenom/bin:${HOME}/.local/bin:${PATH}"
 
-# if the init script doesn't exist
 if ! zgenom saved; then
-  # plugins
   zgenom ohmyzsh
   zgenom ohmyzsh plugins/asdf
   zgenom ohmyzsh plugins/command-not-found
@@ -45,14 +42,9 @@ if ! zgenom saved; then
   zgenom ohmyzsh plugins/z
 
   zgenom load z-shell/F-Sy-H . main
-
-  # install theme
   zgenom load sindresorhus/pure
 
-  # generate the init script from plugins above
   zgenom save
-
-  # Compile your zsh files
   zgenom compile "${HOME}/.zshrc"
 fi
 
@@ -82,10 +74,6 @@ fi
 export FLYCTL_INSTALL="${HOME}/.fly"
 export PATH="${FLYCTL_INSTALL}/bin:${PATH}"
 
-# setup ASDF golang GOROOT
-ASDF_GOLANG_ENV_FILE="${HOME}/.asdf/plugins/golang/set-env.zsh"
-[ -f "${ASDF_GOLANG_ENV_FILE}" ] && . "${ASDF_GOLANG_ENV_FILE}"
-
 # setup rubygems
 (( $+commands[gem] )) && export PATH="$(gem environment gemdir)/bin:${PATH}"
 
@@ -99,4 +87,8 @@ export PATH=$PATH:/mnt/c/Windows/system32:"${WIN_HOME}/AppData/Local/Programs/Mi
 {{   end }}
 {{ end }}
 
-source "${HOME}/.aliases"
+# setup ASDF golang GOROOT
+. "${HOME}/.asdf/plugins/golang/set-env.zsh"
+
+# setup aliases
+. "${HOME}/.aliases"
