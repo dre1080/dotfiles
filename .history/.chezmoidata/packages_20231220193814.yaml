@@ -1,9 +1,0 @@
-packages:
-  asdf:
-    - erlang
-    - elixir
-    - nodejs
-    - php
-    - golang
-    - ruby
-    - sqlite

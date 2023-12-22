@@ -1,7 +1,0 @@
-#!/bin/bash
-
-{{ range .asdf.plugins -}}
-$HOME/.asdf/bin/asdf plugin-add {{ .name | quote }} {{ .url | quote }}
-{{ end -}}
-
-$HOME/.asdf/bin/asdf install
