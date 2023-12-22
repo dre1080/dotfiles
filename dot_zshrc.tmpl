@@ -99,6 +99,7 @@ ASDF_GOLANG_ENV_FILE="${HOME}/.asdf/plugins/golang/set-env.zsh"
 {{ if eq .chezmoi.os "linux" }}
 {{   if (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
 export WIN_HOME=$(wslpath "$(wslvar USERPROFILE)")
+export PATH=$PATH:/mnt/c/Windows/system32:"${WIN_HOME}/AppData/Local/Programs/Microsoft VS Code/bin"
 {{   end }}
 {{ end }}
 
