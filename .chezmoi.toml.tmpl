@@ -1,0 +1,4 @@
+{{- $nerves := promptBoolOnce . "nerves" "Should we install Nerves" false -}}
+
+[data]
+  installNerves = {{ $nerves }}
