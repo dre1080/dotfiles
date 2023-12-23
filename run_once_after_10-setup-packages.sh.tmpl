@@ -1,0 +1,17 @@
+#!/bin/bash
+
+{{ if eq .chezmoi.os "linux" }}
+{{   if (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
+echo "[boot]
+systemd=true
+[interop]
+appendWindowsPath=false" | sudo tee /etc/wsl.conf > /dev/null
+
+echo
+echo -e "\e[1;93mUpdated '/etc/wsl.conf'. Please restart WSL for changes to take effect.\e[0m"
+echo
+{{   end }}
+{{ end }}
+
+sudo mkdir -p /etc/containers \
+  && echo 'unqualified-search-registries = ["docker.io"]' | sudo tee -a /etc/containers/registries.conf > /dev/null
