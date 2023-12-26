@@ -15,6 +15,8 @@ Install the following packages to get the most out of these dotfiles.
 - flyctl - https://github.com/superfly/flyctl
 - gh - https://github.com/cli/cli/blob/trunk/docs/install_linux.md
 
+**Recommended font:** [JetBrains Mono Nerd Font](https://github.com/ryanoasis/nerd-fonts/releases/latest/download/JetBrainsMono.tar.xz)
+
 ## Installation
 
 `sh -c "$(curl -fsLS https://chezmoi.io/get)" -- init --apply dre1080`
