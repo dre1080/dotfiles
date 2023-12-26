@@ -1,15 +1,3 @@
-##
-# Requirements:
-#   zgenom  - https://github.com/jandamm/zgenom
-#   direnv  - https://github.com/direnv/direnv
-#   fzf     - https://github.com/junegunn/fzf
-#   asdf    - https://asdf-vm.com (with plugins: elixir, erlang, nodejs, php, ruby, golang, sqlite)
-#   podman  - https://podman.io/docs/installation
-#   compose - https://docs.docker.com/compose/install/standalone
-#   flyctl  - https://github.com/superfly/flyctl
-#   gh      - https://github.com/cli/cli/blob/trunk/docs/install_linux.md
-##
-
 # your project folder that we can `c [tab]` to
 export PROJECTS="${HOME}/Code"
 
@@ -37,6 +25,9 @@ if ! zgenom saved; then
   zgenom ohmyzsh plugins/fzf
   zgenom ohmyzsh plugins/git
   zgenom ohmyzsh plugins/history-substring-search
+  zgenom ohmyzsh plugins/mix
+  zgenom ohmyzsh plugins/npm
+  zgenom ohmyzsh plugins/podman
   zgenom ohmyzsh plugins/ubuntu
   zgenom ohmyzsh plugins/z
 
