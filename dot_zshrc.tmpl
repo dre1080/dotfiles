@@ -48,6 +48,9 @@ else
   export EDITOR="code-insiders -w"
 fi
 
+# setup podman
+export DOCKER_HOST=unix://$XDG_RUNTIME_DIR/podman/podman.sock
+
 # setup erlang/elixir/iex
 if (( $+commands[erl] )); then
   # enable IEx history

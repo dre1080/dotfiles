@@ -16,4 +16,8 @@ echo
 sudo mkdir -p /etc/containers \
   && echo 'unqualified-search-registries = ["docker.io"]' | sudo tee -a /etc/containers/registries.conf > /dev/null
 
+sudo podman system service \
+  && systemctl --user start podman.socket \
+  && loginctl enable-linger {{ .chezmoi.username }}
+
 curl https://raw.githubusercontent.com/scopatz/nanorc/master/install.sh | sh
