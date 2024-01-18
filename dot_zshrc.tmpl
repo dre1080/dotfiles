@@ -77,6 +77,7 @@ export PATH="${FLYCTL_INSTALL}/bin:${PATH}"
 {{ if eq .chezmoi.os "linux" }}
 {{   if (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
 export WIN_HOME=$(wslpath "$(wslvar USERPROFILE)")
+export PATH="${PATH}:/mnt/c/Windows/system32"
 {{   end }}
 {{ end }}
 
