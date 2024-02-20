@@ -1,0 +1,13 @@
+#!/bin/bash
+#
+# Synchronizes a linux system clock with NTP server
+# See: https://tecadmin.net/synchronizing-a-linux-system-clock-with-ntp-server/
+
+# Install Timesync Service
+sudo apt install systemd-timesyncd
+
+# Enable the Clock Synchronization
+sudo timedatectl set-ntp true
+
+# Synchronize Hardware Clock
+sudo timedatectl set-local-rtc 1
