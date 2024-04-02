@@ -24,26 +24,17 @@ if ! zgenom saved; then
   zgenom ohmyzsh plugins/direnv
   zgenom ohmyzsh plugins/git
   zgenom ohmyzsh plugins/mix
-  zgenom ohmyzsh plugins/npm
-  zgenom ohmyzsh plugins/ubuntu
-  zgenom ohmyzsh plugins/z
-
+ 
   zgenom load marlonrichert/zsh-autocomplete
-  zgenom load sindresorhus/pure
   zgenom load z-shell/F-Sy-H
-
+  zgenom load sindresorhus/pure
+  
   zgenom save
   zgenom compile "${HOME}/.zshrc"
 fi
 
-# preferred editor for local and remote sessions
-if [ -n $SSH_CONNECTION ]; then
-  # SSH mode
-  export EDITOR="nano"
-else
-  # local terminal mode
-  export EDITOR="code-insiders -w"
-fi
+# preferred editor
+export EDITOR="nano"
 
 # setup podman
 export DOCKER_HOST=unix://$XDG_RUNTIME_DIR/podman/podman.sock
