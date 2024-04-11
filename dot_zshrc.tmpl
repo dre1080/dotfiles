@@ -25,11 +25,12 @@ if ! zgenom saved; then
   zgenom ohmyzsh plugins/git
   zgenom ohmyzsh plugins/mix
   zgenom ohmyzsh plugins/ubuntu
- 
+  zgenom ohmyzsh plugins/z
+
   zgenom load marlonrichert/zsh-autocomplete
   zgenom load z-shell/F-Sy-H
   zgenom load sindresorhus/pure
-  
+
   zgenom save
   zgenom compile "${HOME}/.zshrc"
 fi
