@@ -1,7 +1,11 @@
 #!/bin/bash
 
+source "$HOME/.asdf/asdf.sh"
+
 {{ range .asdfPlugins -}}
-$HOME/.asdf/bin/asdf plugin-add {{ . }}
+asdf plugin-add {{ . }}
 {{ end -}}
 
-$HOME/.asdf/bin/asdf install
+{{ range .asdfPlugins -}}
+asdf install {{ . }}
+{{ end -}}
