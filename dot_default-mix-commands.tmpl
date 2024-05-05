@@ -1,0 +1,6 @@
+local.hex
+local.rebar
+archive.install hex phx_new
+{{ if .installNerves }}
+archive.install hex nerves_bootstrap
+{{ end }}
