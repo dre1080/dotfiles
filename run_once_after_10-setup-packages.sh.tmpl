@@ -13,12 +13,17 @@ echo
 {{   end }}
 {{ end }}
 
-sudo mkdir -p /etc/containers \
-  && echo 'unqualified-search-registries = ["docker.io"]' | sudo tee -a /etc/containers/registries.conf > /dev/null
+sudo sysctl -w net.ipv4.ip_unprivileged_port_start=0
 
-sudo podman system service \
-  && systemctl --user start podman.socket \
-  && loginctl enable-linger {{ .chezmoi.username }}
+mkdir -p ~/.config/containers
+> ~/.config/containers/registries.conf cat <<EOF
+unqualified-search-registries=["docker.io"]
+
+[aliases]
+"library"="docker.io/library"
+EOF
+
+ln -s $(which podman) ~/.local/bin/docker
 
 curl https://raw.githubusercontent.com/scopatz/nanorc/master/install.sh | sh
 
