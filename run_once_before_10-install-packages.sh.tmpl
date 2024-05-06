@@ -10,7 +10,7 @@ WSL_DEPS=""
 
 if [ ! -x "$(command -v gh)" ]; then
   curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | \
-      sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg \
+    sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg \
     && sudo chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg \
     && echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | \
       sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null \
@@ -21,24 +21,26 @@ sudo apt install -y --no-install-recommends direnv fzf podman uidmap slirp4netns
 
 pipx install lastversion
 
-if [ ! -x "$(command -v docker-compose)" ]; then
-  ${HOME}/.local/bin/lastversion download docker/compose --format assets --filter linux-x86_64$ -o docker-compose \
-    && sudo mv docker-compose /usr/local/bin/ \
-    && sudo chmod +x /usr/local/bin/docker-compose
+DOCKER_CONFIG=${DOCKER_CONFIG:-$HOME/.docker}
+
+if [ ! -f "$DOCKER_CONFIG/cli-plugins/docker-compose" ]; then
+  mkdir -p $DOCKER_CONFIG/cli-plugins
+  $HOME/.local/bin/lastversion download docker/compose -y --format assets --filter linux-x86_64$ -o $DOCKER_CONFIG/cli-plugins/docker-compose \
+    && chmod +x $DOCKER_CONFIG/cli-plugins/docker-compose
 fi
 
 if [ ! -x "$(command -v yt-dlp)" ]; then
-  ${HOME}/.local/bin/lastversion download yt-dlp/yt-dlp --format assets --filter ^yt-dlp$ \
-    && sudo mv yt-dlp /usr/local/bin/ \
-    && sudo chmod +x /usr/local/bin/yt-dlp
-fi
-
-if [ ! -f "${HOME}/.fly/bin/flyctl" ]; then
-  curl -L https://fly.io/install.sh | sh
+  $HOME/.local/bin/lastversion download yt-dlp/yt-dlp -y --format assets --filter ^yt-dlp$ -o $HOME/.local/bin/yt-dlp \
+    && chmod +x $HOME/.local/bin/yt-dlp
 fi
 
 if [ ! -x "$(command -v diff-so-fancy)" ]; then
-  ${HOME}/.local/bin/lastversion download so-fancy/diff-so-fancy --format assets --filter ^diff-so-fancy$ \
-    && sudo mv diff-so-fancy /usr/local/bin/ \
-    && sudo chmod +x /usr/local/bin/diff-so-fancy
+  sudo $HOME/.local/bin/lastversion download so-fancy/diff-so-fancy --format assets --filter ^diff-so-fancy$ -o $HOME/.local/bin/diff-so-fancy \
+    && chmod +x $HOME/.local/bin/diff-so-fancy
 fi
+
+if [ ! -f "$HOME/.fly/bin/flyctl" ]; then
+  curl -L https://fly.io/install.sh | sh
+fi
+
+curl https://raw.githubusercontent.com/scopatz/nanorc/master/install.sh | sh
