@@ -2,7 +2,7 @@
 
 {{ if eq .chezmoi.os "linux" }}
 {{   if (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
-cat << EOF | sudo tee /etc/wsl.conf
+cat << EOF | sudo tee /etc/wsl.conf >/dev/null
 [boot]
 systemd=true
 command="mount --make-rshared /"
@@ -17,10 +17,10 @@ echo
 {{   end }}
 {{ end }}
 
-sudo sysctl -w net.ipv4.ip_unprivileged_port_start=0
+sudo sysctl -wq net.ipv4.ip_unprivileged_port_start=0
 
 mkdir -p $HOME/.config/containers
-cat << EOF | tee $HOME/.config/containers/registries.conf
+cat << EOF | tee $HOME/.config/containers/registries.conf >/dev/null
 unqualified-search-registries=["docker.io"]
 
 [aliases]
