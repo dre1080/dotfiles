@@ -2,10 +2,14 @@
 
 {{ if eq .chezmoi.os "linux" }}
 {{   if (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
-echo "[boot]
+cat << EOF | sudo tee /etc/wsl.conf
+[boot]
 systemd=true
+command="mount --make-rshared /"
+
 [interop]
-appendWindowsPath=false" | sudo tee /etc/wsl.conf > /dev/null
+appendWindowsPath=false
+EOF
 
 echo
 echo -e "\e[1;93mUpdated '/etc/wsl.conf'. Please restart WSL for changes to take effect.\e[0m"
