@@ -4,15 +4,26 @@
 {{   if (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
 cat << EOF | sudo tee /etc/wsl.conf >/dev/null
 [boot]
-systemd=true
-command="mount --make-rshared /"
+systemd = true
+command = mount --make-rshared /
 
 [interop]
-appendWindowsPath=false
+appendWindowsPath = false
+EOF
+
+WIN_HOME=$(wslpath "$(wslvar USERPROFILE)")
+
+cat << EOF | tee $WIN_HOME/.wslconfig >/dev/null
+[experimental]
+autoMemoryReclaim = dropcache
+sparseVhd = true
+
+[wsl2]
+guiApplications = false
 EOF
 
 echo
-echo -e "\e[1;93mUpdated '/etc/wsl.conf'. Please restart WSL for changes to take effect.\e[0m"
+echo -e "\e[1;93mUpdated WSL config. Please restart WSL for changes to take effect.\e[0m"
 echo
 {{   end }}
 {{ end }}
