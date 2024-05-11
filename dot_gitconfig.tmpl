@@ -5,8 +5,8 @@
 [credential "https://gist.github.com"]
   helper = !/usr/bin/gh auth git-credential
 [user]
-  name = ando
-  email = lifeandcoding@gmail.com
+  name = {{ .chezmoi.username }}
+  email = {{ .email }}
 [core]
   autocrlf = false
   eol = lf
