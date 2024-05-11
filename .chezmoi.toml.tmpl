@@ -1,6 +1,8 @@
-{{- $nerves := promptBoolOnce . "nerves" "Should we install Nerves" false -}}
+{{ $email := promptStringOnce . "email" "What is your email address" }}
+{{ $nerves := promptBoolOnce . "nerves" "Should we install Nerves" false }}
 
 [data]
+  email = {{ $email | quote }}
   installNerves = {{ $nerves }}
   asdfPlugins = ["erlang", "elixir", "nodejs", "php", "golang", "ruby", "sqlite", "rust"]
 
