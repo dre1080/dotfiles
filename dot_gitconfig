@@ -1,15 +1,15 @@
 [init]
-	defaultBranch = main
+  defaultBranch = main
 [credential "https://github.com"]
-	helper = !/usr/bin/gh auth git-credential
+  helper = !/usr/bin/gh auth git-credential
 [credential "https://gist.github.com"]
-	helper = !/usr/bin/gh auth git-credential
+  helper = !/usr/bin/gh auth git-credential
 [user]
-	name = ando
-	email = lifeandcoding@gmail.com
+  name = ando
+  email = lifeandcoding@gmail.com
 [core]
-	autocrlf = false
-	eol = lf
+  autocrlf = false
+  eol = lf
   pager = diff-so-fancy | less --tabs=4 -RF
 [interactive]
   diffFilter = diff-so-fancy --patch
