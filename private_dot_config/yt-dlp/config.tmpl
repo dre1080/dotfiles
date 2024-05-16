@@ -1,5 +1,6 @@
 --write-subs
---sub-lang en
+--sub-langs en,en-US,en-GB,en-CA
+--convert-subs srt
 -S "res:720,ext,fps"
 -o "%(playlist_title)s/%(playlist_index)s - %(title)s.%(ext)s"
 {{ if eq .chezmoi.os "linux" }}
