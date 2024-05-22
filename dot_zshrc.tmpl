@@ -14,6 +14,9 @@ DISABLE_AUTO_UPDATE="true"
 # skip the verification of insecure directories
 ZSH_DISABLE_COMPFIX="true"
 
+# do not resolve symlinks
+_Z_NO_RESOLVE_SYMLINKS=1
+
 # load zgenom
 . "${HOME}/.zgenom/zgenom.zsh"
 export PATH="${HOME}/.zgenom/bin:${HOME}/.local/bin:${PATH}"
