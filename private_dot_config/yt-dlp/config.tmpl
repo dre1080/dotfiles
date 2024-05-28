@@ -1,7 +1,7 @@
 --write-subs
 --sub-langs en,en-US,en-GB,en-CA
 --convert-subs srt
---downloader=aria2c
+--downloader aria2c
 --downloader-args '--min-split-size=1M --max-connection-per-server=16 --max-concurrent-downloads=16 --split=16'
 -S "res:720,ext,fps"
 -o "%(playlist_title)s/%(playlist_index)s - %(title)s.%(ext)s"
