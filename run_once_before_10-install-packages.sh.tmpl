@@ -43,4 +43,8 @@ if [ ! -f "$HOME/.fly/bin/flyctl" ]; then
   curl -L https://fly.io/install.sh | sh
 fi
 
-curl https://raw.githubusercontent.com/scopatz/nanorc/master/install.sh | sh
+if [ ! -x "$(command -v micro)" ]; then
+  curl -o $HOME/.local/bin/micro -L https://getmic.ro/r | sudo sh
+  micro -plugin install filemanager
+  micro -plugin install detectindent
+fi
