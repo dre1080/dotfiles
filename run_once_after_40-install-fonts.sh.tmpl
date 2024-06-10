@@ -4,10 +4,10 @@
 {{   if not (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
 sudo apt install -y --no-install-recommends fontconfig xz-utils
 
-fontName = 'JetBrainsMono Nerd Font'
-isFontInstalled = $(fc-list :family=$fontName)
+FONT_NAME="JetBrainsMono Nerd Font"
+IS_FONT_INSTALLED=$(fc-list :family="$FONT_NAME")
 
-if [ -z "$isFontInstalled" ]; then
+if [ -z "$IS_FONT_INSTALLED" ]; then
   mkdir -p $HOME/.local/share/fonts
 
   $HOME/.local/bin/lastversion download ryanoasis/nerd-fonts -y --format assets --filter JetBrainsMono.tar.xz
@@ -18,7 +18,7 @@ if [ -z "$isFontInstalled" ]; then
 
   fc-cache -f
 
-  gsettings set org.gnome.desktop.interface monospace-font-name $fontName
+  gsettings set org.gnome.desktop.interface monospace-font-name $FONT_NAME
 fi
 {{   end }}
 {{ end }}
