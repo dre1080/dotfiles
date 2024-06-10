@@ -62,7 +62,7 @@ export PATH="$FLYCTL_INSTALL/bin:$PATH"
 (( $+commands[composer] )) && export COMPOSER_IGNORE_PLATFORM_REQS=1
 
 # add mise shims to PATH
-(( $+commands[mise] )) && mise activate --shims
+(( $+commands[mise] )) && export PATH="$HOME/.local/share/mise/shims:$PATH"
 
 {{ if eq .chezmoi.os "linux" }}
 {{   if (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
