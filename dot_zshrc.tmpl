@@ -1,5 +1,5 @@
 # your project folder that we can `c [tab]` to
-export PROJECTS="${HOME}/Code"
+export PROJECTS="$HOME/Code"
 
 # add .functions to path
 fpath=($HOME/.functions $fpath)
@@ -18,14 +18,14 @@ ZSH_DISABLE_COMPFIX="true"
 _Z_NO_RESOLVE_SYMLINKS=1
 
 # load zgenom
-. "${HOME}/.zgenom/zgenom.zsh"
-export PATH="${HOME}/.zgenom/bin:${HOME}/.local/bin:${PATH}"
+. "$HOME/.zgenom/zgenom.zsh"
+export PATH="$HOME/.zgenom/bin:$HOME/.local/bin:$PATH"
 
 if ! zgenom saved; then
   zgenom ohmyzsh
-  zgenom ohmyzsh plugins/asdf
   zgenom ohmyzsh plugins/direnv
   zgenom ohmyzsh plugins/git
+  zgenom ohmyzsh plugins/mise
   zgenom ohmyzsh plugins/mix
   zgenom ohmyzsh plugins/ubuntu
   zgenom ohmyzsh plugins/z
@@ -35,7 +35,7 @@ if ! zgenom saved; then
   zgenom load sindresorhus/pure
 
   zgenom save
-  zgenom compile "${HOME}/.zshrc"
+  zgenom compile "$HOME/.zshrc"
 fi
 
 # preferred editor
@@ -49,33 +49,27 @@ if (( $+commands[erl] )); then
   # enable IEx history
   # see: https://hexdocs.pm/iex/IEx.html#module-shell-history
   export ERL_AFLAGS="-kernel shell_history enabled"
-
-  # build erlang docs
-  # see: https://github.com/asdf-vm/asdf-erlang#getting-erlang-documentation
-  export KERL_BUILD_DOCS=yes
-  export KERL_INSTALL_HTMLDOCS=no
-  export KERL_INSTALL_MANPAGES=no
 fi
 
 # setup flyctl
-export FLYCTL_INSTALL="${HOME}/.fly"
-export PATH="${FLYCTL_INSTALL}/bin:${PATH}"
+export FLYCTL_INSTALL="$HOME/.fly"
+export PATH="$FLYCTL_INSTALL/bin:$PATH"
 
 # setup rubygems
-(( $+commands[gem] )) && export PATH="$(gem environment gemdir)/bin:${PATH}"
+(( $+commands[gem] )) && export PATH="$(gem environment gemdir)/bin:$PATH"
 
 # setup composer
 (( $+commands[composer] )) && export COMPOSER_IGNORE_PLATFORM_REQS=1
 
+# add mise shims to PATH
+(( $+commands[mise] )) && mise activate --shims
+
 {{ if eq .chezmoi.os "linux" }}
 {{   if (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
 export WIN_HOME=$(wslpath "$(wslvar USERPROFILE)")
-export PATH="${PATH}:/mnt/c/Windows/system32"
+export PATH="$PATH:/mnt/c/Windows/system32"
 {{   end }}
 {{ end }}
 
-# setup ASDF golang GOROOT
-. "${HOME}/.asdf/plugins/golang/set-env.zsh"
-
 # setup aliases
-. "${HOME}/.aliases"
+. "$HOME/.aliases"

@@ -1,0 +1,14 @@
+[env]
+KERL_BUILD_DOCS='yes'
+KERL_INSTALL_HTMLDOCS='no'
+KERL_INSTALL_MANPAGES='no'
+
+[tools]
+php = '8'
+erlang = ['26', '27']
+elixir = ['1.16.3-otp-26', '1.17.0-rc.0-otp-27']
+node = '22'
+go = 'prefix:1.22'
+sqlite = '3'
+bun = '1'
+rust = 'prefix:1.78'

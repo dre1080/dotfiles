@@ -1,10 +1,9 @@
 {{ $email := promptStringOnce . "email" "What is your email address" }}
-{{ $nerves := promptBoolOnce . "nerves" "Should we install Nerves" false }}
+{{ $nerves := promptBoolOnce . "nerves" "Should we install Nerves & it's dependencies" false }}
 
 [data]
   email = {{ $email | quote }}
   installNerves = {{ $nerves }}
-  asdfPlugins = ["erlang", "elixir", "nodejs", "php", "golang", "ruby", "sqlite", "rust"]
 
 [diff]
   pager = "diff-so-fancy"

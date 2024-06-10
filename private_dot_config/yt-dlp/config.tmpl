@@ -7,7 +7,7 @@
 -o "%(playlist_title)s/%(playlist_index)s - %(title)s.%(ext)s"
 {{ if eq .chezmoi.os "linux" }}
 {{   if (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
--P "${WIN_HOME}/Downloads/YouTube"
+-P "$WIN_HOME/Downloads/YouTube"
 {{   else }}
 -P "{{ .chezmoi.homeDir }}/Downloads/YouTube"
 {{   end }}

@@ -1,0 +1,11 @@
+#!/bin/bash
+
+MISE_TRUSTED_CONFIG_PATHS="$HOME/.config/mise/config.toml"
+MISE_YES=1
+
+if [ ! -x "$(command -v mise)" ]; then
+  curl https://mise.run | sh
+fi
+
+$HOME/.local/bin/mise activate
+$HOME/.local/bin/mise install
