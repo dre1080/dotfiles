@@ -11,7 +11,6 @@ config.window_background_opacity = 0.95
 config.window_close_confirmation = 'NeverPrompt'
 
 config.keys = {
-  -- copy from selection or send sigint
   {
     key = 'c',
     mods = 'CTRL',
@@ -26,8 +25,8 @@ config.keys = {
       end
     end),
   },
-  -- paste from the clipboard
   { key = 'v', mods = 'CTRL', action = act.PasteFrom 'Clipboard' },
+  { key = 'F11', action = act.ToggleFullScreen },
 }
 
 return config
