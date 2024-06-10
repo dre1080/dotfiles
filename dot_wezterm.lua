@@ -9,6 +9,12 @@ config.font_size = 10.0
 config.window_decorations = 'INTEGRATED_BUTTONS|RESIZE'
 config.window_background_opacity = 0.95
 config.window_close_confirmation = 'NeverPrompt'
+config.window_padding = {
+  left = 16,
+  right = 16,
+  top = 14,
+  bottom = 14,
+}
 
 config.keys = {
   {
