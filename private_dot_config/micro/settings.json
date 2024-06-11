@@ -1,6 +1,9 @@
+/*prettier-ignore*/
 {
     "autosu": true,
     "clipboard": "terminal",
+    "colorcolumn": 100,
+    "colorscheme": "github-dark",
     "diffgutter": true,
     "mkparents": true,
     "rmtrailingws": true,
