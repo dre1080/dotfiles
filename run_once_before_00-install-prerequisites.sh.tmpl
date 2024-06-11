@@ -5,7 +5,5 @@ curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.s
 sudo apt update
 sudo apt install -y --no-install-recommends build-essential curl git git-lfs wget lsd bat python3 pipx zsh unzip inotify-tools
 
-git lfs install
-
 echo "$(which zsh)" | sudo tee -a /etc/shells
 chsh -s "$(which zsh)"
