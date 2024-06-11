@@ -3,8 +3,6 @@
 {{ if eq .chezmoi.os "linux" }}
 {{   if (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
 WSL_DEPS="wslu trash-cli"
-{{   else }}
-WSL_DEPS=""
 {{   end }}
 {{ end }}
 
@@ -17,7 +15,7 @@ if [ ! -x "$(command -v gh)" ]; then
     && sudo apt update
 fi
 
-sudo apt install -y --no-install-recommends direnv fzf podman uidmap slirp4netns gh ffmpeg aria2 $WSL_DEPS
+sudo apt install -y --no-install-recommends fzf podman uidmap slirp4netns gh ffmpeg aria2 $WSL_DEPS
 
 pipx install lastversion
 
