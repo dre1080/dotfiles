@@ -2,12 +2,13 @@
 # skip the verification of insecure directories
 ZSH_DISABLE_COMPFIX="true"
 
+# only set this when on WSL
 if [[ $(grep -i Microsoft /proc/version) ]]; then
   export IS_WSL=1
 fi
 
 # shortcut to this dotfiles path is $ZSH
-export ZSH=$HOME/.zsh
+export ZSH=$HOME/.config/zsh
 
 # your project folder that we can `c [tab]` to
 export PROJECTS="$HOME/Code"
@@ -19,62 +20,26 @@ export MICRO_TRUECOLOR=1
 # setup podman
 export DOCKER_HOST=unix://$XDG_RUNTIME_DIR/podman/podman.sock
 
-# setup erlang/elixir/iex
-if (( $+commands[erl] )); then
-  # enable IEx history
-  # see: https://hexdocs.pm/iex/IEx.html#module-shell-history
-  export ERL_AFLAGS="-kernel shell_history enabled"
-fi
+# setup erlang/elixir/IEx
+# enable IEx history
+# see: https://hexdocs.pm/iex/IEx.html#module-shell-history
+(( $+commands[erl] )) && export ERL_AFLAGS="-kernel shell_history enabled"
 
-# Stash your environment variables in ~/.localrc. This means they'll stay out
-# of your main dotfiles repository (which may be public, like this one), but
-# you'll have access to them in your scripts.
-if [[ -a ~/.localrc ]]
-then
-  source ~/.localrc
-fi
+# setup mise
+eval "$($HOME/.local/bin/mise activate zsh)"
 
-eval "$(~/.local/bin/mise activate zsh)"
+# load zsh config
+source "$ZSH/path.zsh"
+source "$ZSH/config.zsh"
+source "$ZSH/aliases.zsh"
 
-# all of our zsh files
-typeset -U config_files
-config_files=($ZSH/**/*.zsh)
-
-# load the path files
-for file in ${(M)config_files:#*/path.zsh}
-do
-  source $file
-done
-
+# setup sheldon
 eval "$(sheldon source)"
-
-# load everything but the path and completion files
-for file in ${${config_files:#*/path.zsh}:#*/completion.zsh}
-do
-  source $file
-done
 
 # initialize autocomplete here
 autoload -Uz compinit
-if [[ -n ${ZDOTDIR}/.zcompdump(#qN.mh+24) ]]; then
+if [[ -n ${ZSH}/.zcompdump(#qN.mh+24) ]]; then
 	compinit;
 else
 	compinit -C;
 fi
-
-# Better history
-# Credits to https://coderwall.com/p/jpj_6q/zsh-better-history-searching-with-arrow-keys
-autoload -U up-line-or-beginning-search
-autoload -U down-line-or-beginning-search
-zle -N up-line-or-beginning-search
-zle -N down-line-or-beginning-search
-bindkey "^[[A" up-line-or-beginning-search # Up
-bindkey "^[[B" down-line-or-beginning-search # Down
-
-# load every completion after autocomplete loads
-for file in ${(M)config_files:#*/completion.zsh}
-do
-  source $file
-done
-
-unset config_files

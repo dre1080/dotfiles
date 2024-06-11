@@ -1,3 +1,9 @@
+# File system
+# alias ls='eza -lh --group-directories-first --icons'
+# alias lsa='ls -a'
+# alias lt='eza --tree --level=2 --long --icons --git'
+# alias lta='lt -a'
+
 # Directories
 alias ..='cd ..'
 alias ...='cd ../..'
@@ -19,3 +25,4 @@ alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
 alias gcm='git commit -m'
 alias gcam='git commit -a -m'
 alias gcad='git commit -a --amend'
+alias gst='git status'

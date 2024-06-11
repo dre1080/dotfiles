@@ -17,16 +17,6 @@ shell = "zsh"
 [plugins.zsh-defer]
 github = "romkatv/zsh-defer"
 
-[plugins.zsh-menu-completion]
-github = "ohmyzsh/ohmyzsh"
-dir = "lib"
-use = ["completion.zsh"]
-
-[plugins.colored-man-pages]
-github = "ohmyzsh/ohmyzsh"
-dir = "plugins/colored-man-pages"
-apply = ["defer"]
-
 [plugins.mix]
 github = "ohmyzsh/ohmyzsh"
 dir = "plugins/mix"
