@@ -1,11 +1,18 @@
 #!/bin/bash
 
-MISE_TRUSTED_CONFIG_PATHS="$HOME/.config/mise/config.toml"
-MISE_YES=1
-
-if [ ! -x "$(command -v mise)" ]; then
+if [[ ! -x "$(command -v mise)" ]]; then
   curl https://mise.run | sh
 fi
 
 $HOME/.local/bin/mise activate
-$HOME/.local/bin/mise install
+
+KERL_BUILD_DOCS="yes"
+KERL_INSTALL_HTMLDOCS="no"
+KERL_INSTALL_MANPAGES="no"
+
+# Install default programming languages
+languages=(erlang elixir go bun node php rust sqlite)
+
+for language in $languages; do
+  mise use -g "$language@latest"
+done
