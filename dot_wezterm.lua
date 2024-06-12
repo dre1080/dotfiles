@@ -3,7 +3,8 @@ local act = wezterm.action
 local config = {}
 
 config.default_cwd = wezterm.home_dir
-config.default_cursor_style = 'SteadyBar'
+config.default_cursor_style = 'BlinkingBar'
+config.cursor_blink_rate = 500
 config.color_scheme = 'GitHub Dark'
 config.font = wezterm.font 'JetBrainsMono Nerd Font'
 config.font_size = 10.0
@@ -11,6 +12,7 @@ config.window_decorations = 'INTEGRATED_BUTTONS|RESIZE'
 config.window_background_opacity = 0.95
 config.hide_tab_bar_if_only_one_tab = true
 config.prefer_to_spawn_tabs = true
+config.use_fancy_tab_bar = false
 
 config.disable_default_key_bindings = true
 config.keys = {
@@ -43,6 +45,11 @@ config.keys = {
   { key = 'w', mods = 'SHIFT|ALT', action = act.CloseCurrentTab{ confirm = false } },
   { key = 't', mods = 'ALT', action = act.SpawnTab 'CurrentPaneDomain' },
   {
+    key = 't',
+    mods = 'ALT|SHIFT',
+    action = act.ShowTabNavigator,
+  },
+  {
     key = 'n',
     mods = 'ALT',
     action = act.ActivateKeyTable {
@@ -68,15 +75,25 @@ config.keys = {
   },
   { key = 'LeftArrow', mods = 'ALT', action = act.ActivatePaneDirection 'Left' },
   { key = 'h', mods = 'ALT', action = act.ActivatePaneDirection 'Left' },
-
   { key = 'RightArrow', mods = 'ALT', action = act.ActivatePaneDirection 'Right' },
   { key = 'l', mods = 'ALT', action = act.ActivatePaneDirection 'Right' },
-
   { key = 'UpArrow', mods = 'ALT', action = act.ActivatePaneDirection 'Up' },
-  { key = 'k', action = act.ActivatePaneDirection 'Up' },
-
+  { key = 'k', mods = 'ALT', action = act.ActivatePaneDirection 'Up' },
   { key = 'DownArrow', mods = 'ALT', action = act.ActivatePaneDirection 'Down' },
   { key = 'j', mods = 'ALT', action = act.ActivatePaneDirection 'Down' },
+  { key = 'PageUp', mods = 'SHIFT', action = act.ScrollByPage(-1) },
+  { key = 'PageDown', mods = 'SHIFT', action = act.ScrollByPage(1) },
+  {
+    key = ',',
+    mods = 'CTRL',
+    action = act.SpawnCommandInNewTab {
+      cwd = os.getenv('WEZTERM_CONFIG_DIR'),
+      args = {
+        '/usr/bin/micro',
+        os.getenv('WEZTERM_CONFIG_FILE'),
+      },
+    },
+  },
 }
 
 config.key_tables = {
@@ -139,8 +156,8 @@ config.key_tables = {
   rotate_panes = {
     { key = 'LeftArrow', action = act.RotatePanes 'CounterClockwise' },
     { key = '-', action = act.RotatePanes 'CounterClockwise' },
-    { key = 'RightArrow', action =act.RotatePanes 'Clockwise' },
-    { key = '=', action =act.RotatePanes 'Clockwise' },
+    { key = 'RightArrow', action = act.RotatePanes 'Clockwise' },
+    { key = '=', action = act.RotatePanes 'Clockwise' },
   },
 }
 
