@@ -2,6 +2,7 @@ local wezterm = require 'wezterm'
 local act = wezterm.action
 local config = {}
 
+config.default_cwd = wezterm.home_dir
 config.default_cursor_style = 'SteadyBar'
 config.color_scheme = 'GitHub Dark'
 config.font = wezterm.font 'JetBrainsMono Nerd Font'
@@ -100,7 +101,7 @@ config.key_tables = {
     { key = 'x', action = act.CloseCurrentPane{ confirm = false } },
     {
       key = 'l',
-      action = wezterm.action.SplitPane {
+      action = act.SplitPane {
         direction = 'Left',
         command = { domain = 'CurrentPaneDomain' },
         size = { Percent = 50 },
@@ -108,7 +109,7 @@ config.key_tables = {
     },
     {
       key = 'r',
-      action = wezterm.action.SplitPane {
+      action = act.SplitPane {
         direction = 'Right',
         command = { domain = 'CurrentPaneDomain' },
         size = { Percent = 50 },
@@ -116,7 +117,7 @@ config.key_tables = {
     },
     {
       key = 't',
-      action = wezterm.action.SplitPane {
+      action = act.SplitPane {
         direction = 'Up',
         command = { domain = 'CurrentPaneDomain' },
         size = { Percent = 50 },
@@ -124,7 +125,7 @@ config.key_tables = {
     },
     {
       key = 'd',
-      action = wezterm.action.SplitPane {
+      action = act.SplitPane {
         direction = 'Down',
         command = { domain = 'CurrentPaneDomain' },
         size = { Percent = 50 },
