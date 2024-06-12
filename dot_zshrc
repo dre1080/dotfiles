@@ -36,6 +36,9 @@ source "$ZSH/aliases.zsh"
 # setup sheldon
 eval "$(sheldon source)"
 
+# setup starship prompt
+eval "$(starship init zsh)"
+
 # initialize autocomplete here
 autoload -Uz compinit
 if [[ -n ${ZSH}/.zcompdump(#qN.mh+24) ]]; then
