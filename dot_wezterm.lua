@@ -13,6 +13,24 @@ config.window_background_opacity = 0.95
 config.hide_tab_bar_if_only_one_tab = true
 config.prefer_to_spawn_tabs = true
 config.use_fancy_tab_bar = false
+config.max_fps = 120
+config.mouse_bindings = {
+  {
+    event = { Up = { streak = 1, button = 'Left' } },
+    mods = 'NONE',
+    action = act.CompleteSelection('PrimarySelection'),
+  },
+
+  {
+    event = { Up = { streak = 1, button = 'Left' } },
+    mods = 'CMD',
+    action = act.OpenLinkAtMouseCursor,
+  },
+}
+config.inactive_pane_hsb = {
+  saturation = 1.0,
+  brightness = 0.3,
+}
 
 config.disable_default_key_bindings = true
 config.keys = {
@@ -42,7 +60,7 @@ config.keys = {
   { key = 'UpArrow', mods = 'ALT', action = act.ActivatePaneDirection 'Up' },
   { key = 'DownArrow', mods = 'ALT', action = act.ActivatePaneDirection 'Down' },
   { key = 'w', mods = 'ALT', action = act.CloseCurrentTab{ confirm = true } },
-  { key = 'w', mods = 'SHIFT|ALT', action = act.CloseCurrentTab{ confirm = false } },
+  { key = 'w', mods = 'CTRL|ALT', action = act.CloseCurrentTab{ confirm = false } },
   { key = 't', mods = 'ALT', action = act.SpawnTab 'CurrentPaneDomain' },
   {
     key = 't',
@@ -88,10 +106,7 @@ config.keys = {
     mods = 'CTRL',
     action = act.SpawnCommandInNewTab {
       cwd = os.getenv('WEZTERM_CONFIG_DIR'),
-      args = {
-        '/usr/bin/micro',
-        os.getenv('WEZTERM_CONFIG_FILE'),
-      },
+      args = { 'micro', os.getenv('WEZTERM_CONFIG_FILE') },
     },
   },
 }

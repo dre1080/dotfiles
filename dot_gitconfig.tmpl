@@ -1,33 +1,40 @@
 [init]
   defaultBranch = main
+
 [credential "https://github.com"]
   helper = !/usr/bin/gh auth git-credential
 [credential "https://gist.github.com"]
   helper = !/usr/bin/gh auth git-credential
+
 [user]
-  name = {{ .chezmoi.username }}
-  email = {{ .email }}
+  name = {{ .github.username }}
+  email = {{ .github.email }}
+
 [core]
   autocrlf = false
   eol = lf
-  pager = diff-so-fancy | less --tabs=4 -RF
+  pager = delta
   attributesfile = {{ .chezmoi.homeDir }}/.gitattributes
+
+[pull]
+  rebase = true
+
 [interactive]
-  diffFilter = diff-so-fancy --patch
-[color]
-  ui = true
-[color "diff-highlight"]
-  oldNormal = red bold
-  oldHighlight = red bold 52
-  newNormal = green bold
-  newHighlight = green bold 22
-[color "diff"]
-  meta = 11
-  frag = magenta bold
-  func = 146 bold
-  commit = yellow bold
-  old = red bold
-  new = green bold
-  whitespace = red reverse
+  diffFilter = delta --color-only
+
+[delta]
+  navigate = true
+  line-numbers = true
+
+[merge]
+  conflictstyle = diff3
+
+[diff]
+  colorMoved = default
+
 [alias]
   fix-perm = "git diff -p | grep -E \"^(diff|old mode|new mode)\" | sed -e \"s/^old/NEW/;s/^new/old/;s/^NEW/new/\" | git apply"
+  co = checkout
+  br = branch
+  ci = commit
+  st = status

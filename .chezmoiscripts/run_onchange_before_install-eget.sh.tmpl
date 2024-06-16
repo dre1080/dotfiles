@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+set -e
+
+if [[ ! -x ~/.local/bin/eget ]]; then
+  curl zyedidia.github.io/eget.sh | sh
+  mv eget ~/.local/bin/eget
+fi

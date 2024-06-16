@@ -1,5 +1,7 @@
-#!/bin/bash
-#
+#!/usr/bin/env bash
+{{ if .isWSL }}
+set -e
+
 # Synchronizes a linux system clock with NTP server
 # See: https://tecadmin.net/synchronizing-a-linux-system-clock-with-ntp-server/
 
@@ -11,3 +13,4 @@ sudo timedatectl set-ntp true
 
 # Synchronize Hardware Clock
 sudo timedatectl set-local-rtc 1
+{{ end }}

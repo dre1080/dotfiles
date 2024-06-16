@@ -1,9 +1,19 @@
-{{ $email := promptStringOnce . "email" "What is your email address" }}
-{{ $nerves := promptBoolOnce . "nerves" "Should we install Nerves & it's dependencies" false }}
+{{- $githubEmail := promptStringOnce . "email" "What is your GitHub email" -}}
+{{- $githubUsername := promptStringOnce . "username" "What is your GitHub username" -}}
+{{ $nerves := promptBoolOnce . "nerves" "Do you want to install Nerves & it's dependencies" false }}
 
 [data]
-  email = {{ $email | quote }}
-  installNerves = {{ $nerves }}
+  isWSL = {{ all ( eq .chezmoi.os "linux" ) ( .chezmoi.kernel.osrelease | lower | contains "microsoft" ) }}
+
+[data.github]
+  email = {{ $githubEmail | quote }}
+  username = {{ $githubUsername | quote }}
+
+[data.install]
+  nerves = {{ $nerves }}
 
 [diff]
-  pager = "diff-so-fancy"
+  pager = "delta"
+
+[hooks.apply.post]
+  command = ".local/share/chezmoi/.post-install-hook.sh"

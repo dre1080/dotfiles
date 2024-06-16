@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+# Exit immediately if a command exits with a non-zero status
+set -e
+
+sudo apt update
+sudo apt install -y build-essential apt-transport-https ca-certificates software-properties-common git zsh unzip unrar xz-utils gpg curl wget {{ if .isWSL }}wslu openssh-server dos2unix{{ end }}
+
+# set zsh as default shell
+chsh -s "$(which zsh)"

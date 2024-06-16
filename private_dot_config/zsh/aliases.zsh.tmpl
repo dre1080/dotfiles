@@ -1,0 +1,60 @@
+# File system
+alias ls='eza -lh --group-directories-first --icons'
+alias lsa='ls -a'
+alias lt='eza --tree --level=2 --long --icons --git'
+alias lta='lt -a'
+alias cat='bat --paging=never --style=plain'
+alias -g -- -h='-h 2>&1 | bat --language=help --style=plain'
+alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
+
+# Directories
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+
+# Tools
+alias up='topgrade'
+alias g='git'
+alias d='docker'
+alias yt='yt-dlp'
+alias m='micro'
+alias x='mise x --'
+alias cz=chezmoi
+alias erlv="erl -eval '{ok, Version} = file:read_file(filename:join([code:root_dir(), \"releases\", erlang:system_info(otp_release), \"OTP_VERSION\"])), io:fwrite(Version), halt().' -noshell"
+alias dog='docker run -it --rm dog'
+alias rip='rip --graveyard ~/.local/share/Trash'
+alias fly='flyctl'
+alias lzg='lazygit'
+alias lzd='lazydocker'
+
+{{ if .isWSL }}
+VSCODE_INSTALL_PATH=$(wslpath "$(wslvar LOCALAPPDATA)\Programs\Microsoft VS Code")
+
+if [ -d "$VSCODE_INSTALL_PATH" ]; then
+  alias code="$VSCODE_INSTALL_PATH/bin/code"
+  alias c='code'
+fi
+
+if [ -d "$VSCODE_INSTALL_PATH Insiders" ]; then
+  alias code-insiders="$VSCODE_INSTALL_PATH Insiders/bin/code-insiders"
+  alias ci='code-insiders'
+fi
+{{ end }}
+
+# Git
+alias gcm='git commit -m'
+alias gcam='git commit -a -m'
+alias gcad='git commit -a --amend'
+alias gst='git status'
+
+# System
+alias acs='apt-cache search'
+alias acsh='apt-cache show'
+alias acp='apt-cache policy'
+alias agi='sudo apt install'
+alias agp='sudo apt purge'
+alias agr='sudo apt remove'
+alias agu='sudo apt update'
+alias agug='sudo apt upgrade'
+alias aguu='sudo apt update && sudo apt upgrade'
+alias agar='sudo apt autoremove'

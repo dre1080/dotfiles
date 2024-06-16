@@ -1,0 +1,9 @@
+DISTRIB_RELEASE=$(lsb_release -rs)
+
+curl -o /tmp/mega.deb https://mega.nz/linux/repo/xUbuntu_${DISTRIB_RELEASE}/amd64/megasync-xUbuntu_${DISTRIB_RELEASE}_amd64.deb
+sudo apt install -y /tmp/mega.deb
+rm /tmp/mega.deb
+
+curl -o /tmp/nautilus-mega.deb "https://mega.nz/linux/repo/xUbuntu_${DISTRIB_RELEASE}/amd64/nautilus-megasync-xUbuntu_${DISTRIB_RELEASE}_amd64.deb"
+sudo apt install -y /tmp/nautilus-mega.deb
+rm /tmp/nautilus-mega.deb

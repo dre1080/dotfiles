@@ -1,16 +1,10 @@
-
 # skip the verification of insecure directories
 ZSH_DISABLE_COMPFIX="true"
-
-# only set this when on WSL
-if [[ $(grep -i Microsoft /proc/version) ]]; then
-  export IS_WSL=1
-fi
 
 # shortcut to this dotfiles path is $ZSH
 export ZSH=$HOME/.config/zsh
 
-# your project folder that we can `c [tab]` to
+# your projects folder
 export PROJECTS="$HOME/Code"
 
 # preferred editor
@@ -18,31 +12,42 @@ export EDITOR="micro"
 export MICRO_TRUECOLOR=1
 
 # setup podman
+export DOCKER_CONFIG=${DOCKER_CONFIG:-"~/.docker"}
 export DOCKER_HOST=unix://$XDG_RUNTIME_DIR/podman/podman.sock
 
-# setup erlang/elixir/IEx
+# setup coloring for man pages
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+export MANROFFOPT="-c"
+
 # enable IEx history
 # see: https://hexdocs.pm/iex/IEx.html#module-shell-history
-(( $+commands[erl] )) && export ERL_AFLAGS="-kernel shell_history enabled"
+export ERL_AFLAGS="-kernel shell_history enabled"
 
 # setup mise
-eval "$($HOME/.local/bin/mise activate zsh)"
+eval "$(~/.local/bin/mise activate zsh)"
+eval "$(~/.local/bin/mise hook-env -s zsh)"
 
 # load zsh config
 source "$ZSH/path.zsh"
 source "$ZSH/config.zsh"
 source "$ZSH/aliases.zsh"
 
-# setup sheldon
-eval "$(sheldon source)"
-
-# setup starship prompt
-eval "$(starship init zsh)"
-
-# initialize autocomplete here
+# initialize autocomplete here, otherwise functions won't be loaded
 autoload -Uz compinit
 if [[ -n ${ZSH}/.zcompdump(#qN.mh+24) ]]; then
 	compinit;
 else
 	compinit -C;
+fi
+
+source "$ZSH/plugins.zsh"
+
+zsh-defer -c "$(zoxide init zsh)"
+zsh-defer -c "$(starship init zsh)"
+
+# Stash your environment variables in ~/.localrc. This means they'll stay out
+# of your main dotfiles repository (which may be public, like this one), but
+# you'll have access to them in your scripts.
+if [[ -a ~/.localrc ]]; then
+  zsh-defer source ~/.localrc
 fi
