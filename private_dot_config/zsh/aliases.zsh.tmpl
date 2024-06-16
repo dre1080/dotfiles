@@ -26,18 +26,11 @@ alias rip='rip --graveyard ~/.local/share/Trash'
 alias fly='flyctl'
 alias lzg='lazygit'
 alias lzd='lazydocker'
-
+alias c='code'
 {{ if .isWSL }}
-VSCODE_INSTALL_PATH=$(wslpath "$(wslvar LOCALAPPDATA)\Programs\Microsoft VS Code")
-
-if [ -d "$VSCODE_INSTALL_PATH" ]; then
-  alias code="$VSCODE_INSTALL_PATH/bin/code"
-  alias c='code'
-fi
-
-if [ -d "$VSCODE_INSTALL_PATH Insiders" ]; then
-  alias code-insiders="$VSCODE_INSTALL_PATH Insiders/bin/code-insiders"
-  alias ci='code-insiders'
+win_vscode_path=$(wslpath "$(wslvar LOCALAPPDATA)\Programs\Microsoft VS Code")
+if [[ -d "$win_vscode_path" ]]; then
+  alias code="$win_vscode_path/bin/code"
 fi
 {{ end }}
 
