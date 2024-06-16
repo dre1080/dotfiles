@@ -15,8 +15,8 @@ enabled = true
 options = "metadata,umask=22,fmask=11"
 EOF
 
-USERPROFILE=$(wslpath "$(wslvar USERPROFILE)")
-cat << EOF | tee "$USERPROFILE/.wslconfig" >/dev/null
+win_home=$(wslpath "$(wslvar USERPROFILE)")
+cat << EOF | tee "$win_home/.wslconfig" >/dev/null
 [experimental]
 autoMemoryReclaim = dropcache
 sparseVhd = true
