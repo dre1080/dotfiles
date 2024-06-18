@@ -15,4 +15,4 @@ if [[ ! -x ~/.local/bin/micro ]]; then
   ~/.local/bin/micro -plugin install detectindent
 fi
 
-cargo install topgrade rm-improved xcp starship du-dust bottom dysk
+~/.local/bin/mise x rust -- cargo install topgrade rm-improved xcp starship du-dust bottom dysk
