@@ -13,8 +13,8 @@ sudo apt install -y  bison gettext libgd-dev libcurl4-openssl-dev libedit-dev li
 # Install default programming languages
 languages=(erlang elixir bun sqlite node go php)
 
-for language in $languages; do
- ~/.local/bin/mise use -g $language@latest
+for language in "${languages[@]}"; do
+ ~/.local/bin/mise use -y -g "$language@latest"
 done
 
 # needed for elixir phoenix framework
