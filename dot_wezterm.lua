@@ -14,6 +14,9 @@ config.hide_tab_bar_if_only_one_tab = true
 config.prefer_to_spawn_tabs = true
 config.use_fancy_tab_bar = false
 config.max_fps = 120
+config.initial_cols = 120
+config.initial_rows = 36
+config.hide_mouse_cursor_when_typing = false
 config.mouse_bindings = {
   {
     event = { Up = { streak = 1, button = 'Left' } },
