@@ -12,8 +12,6 @@ if [[ ! -x ~/.local/bin/micro ]]; then
   ~/.local/bin/micro -plugin install detectindent
 fi
 
-~/.local/bin/mise x rust -- cargo install topgrade rm-improved xcp starship fd-find du-dust bottom dysk
+cargo install topgrade rm-improved xcp starship fd-find du-dust bottom dysk
 
 ln -sf $(which batcat) ~/.local/bin/bat
-
-zoxide add $PROJECTS $(ls -d $PROJECTS/*)
