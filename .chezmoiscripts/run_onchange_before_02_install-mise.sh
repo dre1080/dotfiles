@@ -16,6 +16,3 @@ languages=(erlang elixir bun sqlite node go php)
 for language in "${languages[@]}"; do
  ~/.local/bin/mise use -y -g "$language@latest"
 done
-
-# needed for elixir phoenix framework
-sudo apt install -y inotify-tools
