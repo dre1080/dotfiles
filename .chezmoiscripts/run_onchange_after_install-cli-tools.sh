@@ -2,7 +2,10 @@
 
 set -e
 
-sudo apt install -y bat ripgrep git-delta eza zoxide sd xclip jq fzf plocate ffmpeg aria2
+sudo apt install -y bat ripgrep git-delta eza zoxide sd xclip jq fzf plocate ffmpeg aria2 fd-find
+
+ln -sf $(which batcat) ~/.local/bin/bat
+ln -sf $(which fdfind) ~/.local/bin/fd
 
 [[ -x ~/.local/bin/yt-dlp ]] || ~/.local/bin/eget yt-dlp/yt-dlp --to ~/.local/bin/yt-dlp -a yt-dlp_linux
 
@@ -12,6 +15,4 @@ if [[ ! -x ~/.local/bin/micro ]]; then
   ~/.local/bin/micro -plugin install detectindent
 fi
 
-cargo install topgrade rm-improved xcp starship fd-find du-dust bottom dysk
-
-ln -sf $(which batcat) ~/.local/bin/bat
+cargo install topgrade rm-improved xcp starship du-dust bottom dysk
