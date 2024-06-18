@@ -17,6 +17,7 @@ config.max_fps = 120
 config.initial_cols = 120
 config.initial_rows = 36
 config.hide_mouse_cursor_when_typing = false
+config.enable_scroll_bar = true
 config.mouse_bindings = {
   {
     event = { Up = { streak = 1, button = 'Left' } },
