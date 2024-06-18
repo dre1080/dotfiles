@@ -63,8 +63,8 @@ config.keys = {
   { key = 'RightArrow', mods = 'ALT', action = act.ActivatePaneDirection 'Right' },
   { key = 'UpArrow', mods = 'ALT', action = act.ActivatePaneDirection 'Up' },
   { key = 'DownArrow', mods = 'ALT', action = act.ActivatePaneDirection 'Down' },
-  { key = 'w', mods = 'ALT', action = act.CloseCurrentTab{ confirm = true } },
-  { key = 'w', mods = 'CTRL|ALT', action = act.CloseCurrentTab{ confirm = false } },
+  { key = 'w', mods = 'SUPER', action = act.CloseCurrentTab{ confirm = true } },
+  { key = 'w', mods = 'CTRL|SUPER', action = act.CloseCurrentTab{ confirm = false } },
   { key = 't', mods = 'ALT', action = act.SpawnTab 'CurrentPaneDomain' },
   {
     key = 't',
@@ -84,7 +84,7 @@ config.keys = {
     mods = 'ALT',
     action = act.ActivateKeyTable {
       name = 'split_pane',
-      one_shot = false,
+      one_shot = true,
     },
   },
   {
