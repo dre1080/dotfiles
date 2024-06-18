@@ -6,7 +6,7 @@ set -e
 sudo apt install -y automake autoconf squashfs-tools ssh-askpass pkg-config libmnl-dev libssl-dev libncurses5-dev bc m4 unzip zip cmake libtool mtools help2man libconfuse-dev libarchive-dev xdelta3 dosfstools cpio
 
 if [[ ! -x "$(command -v fwup)" ]]; then
-  eget fwup-home/fwup --to /tmp/fwup.deb -a amd64 -a .deb
+  ~/.local/bin/eget fwup-home/fwup --to /tmp/fwup.deb -a amd64 -a .deb
   sudo apt install -y /tmp/fwup.deb
   rm /tmp/fwup.deb
 fi
