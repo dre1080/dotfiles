@@ -4,4 +4,4 @@ export FLYCTL_INSTALL="~/.fly"
 export WIN_HOME=$(wslpath "$(wslvar USERPROFILE)")
 {{ end }}
 
-export PATH="$FLYCTL_INSTALL/bin:~/.local/bin:$PATH{{ if .isWSL }}:/mnt/c/Windows/system32{{ end }}"
+export PATH="$FLYCTL_INSTALL/bin:~/.cargo/bin:~/.local/bin:$PATH{{ if .isWSL }}:/mnt/c/Windows/system32{{ end }}"
