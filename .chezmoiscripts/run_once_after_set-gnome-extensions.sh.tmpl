@@ -65,4 +65,31 @@ gsettings set org.gnome.shell.extensions.space-bar.shortcuts open-menu "@as []"
 
 # Configure tweaks
 gsettings set org.gnome.mutter center-new-windows true
+
+# Configure Gnome Session Manager
+gsettings set org.gnome.SessionManager auto-save-session true
+gsettings set org.gnome.SessionManager auto-save-session-one-shot true
+
+# Configure App Icons Taskbar
+gsettings set org.gnome.shell.extensions.aztaskbar clock-position-in-panel 'RIGHT'
+gsettings set org.gnome.shell.extensions.aztaskbar icon-size 20
+gsettings set org.gnome.shell.extensions.aztaskbar main-panel-height (false, 40)
+gsettings set org.gnome.shell.extensions.aztaskbar position-offset 5
+gsettings set org.gnome.shell.extensions.aztaskbar show-panel-activities-button false
+
+# Configure Unite
+gsettings set org.gnome.shell.extensions.unite desktop-name-text 'Desktop'
+gsettings set org.gnome.shell.extensions.unite extend-left-box false
+gsettings set org.gnome.shell.extensions.unite hide-app-menu-icon false
+gsettings set org.gnome.shell.extensions.unite restrict-to-primary-screen false
+gsettings set org.gnome.shell.extensions.unite window-buttons-theme 'yaru'
+
+# Configure Window Thumbnails
+gsettings set org.gnome.shell.extensions.window-thumbnails create-tmb-shortcut ['<Super>f']
+gsettings set org.gnome.shell.extensions.window-thumbnails default-scale 25
+gsettings set org.gnome.shell.extensions.window-thumbnails disable-meta-unredirection true
+gsettings set org.gnome.shell.extensions.window-thumbnails hide-focused true
+gsettings set org.gnome.shell.extensions.window-thumbnails position-custom false
+gsettings set org.gnome.shell.extensions.window-thumbnails schema-migrated true
+gsettings set org.gnome.shell.extensions.window-thumbnails mouse-hover-delay 2147483647
 {{ end }}
