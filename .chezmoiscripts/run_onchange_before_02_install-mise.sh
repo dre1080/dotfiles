@@ -2,7 +2,7 @@
 
 set -e
 
-[[ -x ~/.local/bin/mise ]] || curl mise.run | sh
+[[ -x ~/.local/bin/mise ]] || curl https://mise.run | sh
 
 # Install default programming languages
 languages=(erlang elixir bun sqlite node go php rust)
