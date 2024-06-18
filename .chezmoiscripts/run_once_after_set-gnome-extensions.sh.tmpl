@@ -73,7 +73,7 @@ gsettings set org.gnome.SessionManager auto-save-session-one-shot true
 # Configure App Icons Taskbar
 gsettings set org.gnome.shell.extensions.aztaskbar clock-position-in-panel 'RIGHT'
 gsettings set org.gnome.shell.extensions.aztaskbar icon-size 20
-gsettings set org.gnome.shell.extensions.aztaskbar main-panel-height (false, 40)
+gsettings set org.gnome.shell.extensions.aztaskbar main-panel-height '(false, 40)'
 gsettings set org.gnome.shell.extensions.aztaskbar position-offset 5
 gsettings set org.gnome.shell.extensions.aztaskbar show-panel-activities-button false
 
@@ -85,7 +85,7 @@ gsettings set org.gnome.shell.extensions.unite restrict-to-primary-screen false
 gsettings set org.gnome.shell.extensions.unite window-buttons-theme 'yaru'
 
 # Configure Window Thumbnails
-gsettings set org.gnome.shell.extensions.window-thumbnails create-tmb-shortcut ['<Super>f']
+gsettings set org.gnome.shell.extensions.window-thumbnails create-tmb-shortcut "['<Super>f']"
 gsettings set org.gnome.shell.extensions.window-thumbnails default-scale 25
 gsettings set org.gnome.shell.extensions.window-thumbnails disable-meta-unredirection true
 gsettings set org.gnome.shell.extensions.window-thumbnails hide-focused true
