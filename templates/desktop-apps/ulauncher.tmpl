@@ -1,11 +1,5 @@
-#!/usr/bin/env bash
-{{ if not .isWSL }}
-set -e
-
 sudo add-apt-repository universe -y
 sudo add-apt-repository ppa:agornostal/ulauncher -y
 sudo apt update
 sudo apt install -y ulauncher
-
-systemctl --enable user --now ulauncher
-{{ end }}
+gtk-launch ulauncher.desktop >/dev/null 2>&1
