@@ -1,3 +1,6 @@
-curl -o /tmp/code.deb 'https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64'
-sudo apt install -y /tmp/code.deb
-rm /tmp/code.deb
+if ! apt list --installed | grep -q '^code/'; then
+  curl -L -o /tmp/code.deb 'https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64'
+  sudo apt install -y /tmp/code.deb
+  rm /tmp/code.deb
+fi
+
