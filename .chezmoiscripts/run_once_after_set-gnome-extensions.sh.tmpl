@@ -8,7 +8,6 @@ pipx install gnome-extensions-cli --system-site-packages
 # Turn off default Ubuntu extensions
 gnome-extensions disable tiling-assistant@ubuntu.com
 gnome-extensions disable ubuntu-appindicators@ubuntu.com
-gnome-extensions disable ubuntu-dock@ubuntu.com
 gnome-extensions disable ding@rastersoft.com
 
 # Install new extensions
@@ -16,7 +15,6 @@ gnome-extensions disable ding@rastersoft.com
 ~/.local/bin/gext install blur-my-shell@aunetx
 ~/.local/bin/gext install space-bar@luchrioh
 ~/.local/bin/gext install window-thumbnails@G-dH.github.com
-~/.local/bin/gext install dash-to-panel@jderose9.github.com
 ~/.local/bin/gext install undecorate@sun.wxg@gmail.com
 
 ~/.local/bin/eget hardpixel/unite-shell --to /tmp/unite.zip -a shell -a .zip -d
@@ -29,8 +27,24 @@ sudo cp ~/.local/share/gnome-shell/extensions/blur-my-shell@aunetx/schemas/org.g
 sudo cp ~/.local/share/gnome-shell/extensions/space-bar@luchrioh/schemas/org.gnome.shell.extensions.space-bar.gschema.xml /usr/share/glib-2.0/schemas/
 sudo cp ~/.local/share/gnome-shell/extensions/window-thumbnails@G-dH.github.com/schemas/org.gnome.shell.extensions.window-thumbnails.gschema.xml /usr/share/glib-2.0/schemas/
 sudo cp ~/.local/share/gnome-shell/extensions/unite@hardpixel.eu/schemas/org.gnome.shell.extensions.unite.gschema.xml /usr/share/glib-2.0/schemas/
-sudo cp ~/.local/share/gnome-shell/extensions/dash-to-panel@jderose9.github.com/schemas/gsettings set org.gnome.shell.extensions.dash-to-panel.gschema.xml /usr/share/glib-2.0/schemas/
 sudo glib-compile-schemas /usr/share/glib-2.0/schemas/
+
+
+# Configure tweaks
+gsettings set org.gnome.mutter center-new-windows true
+
+# Configure Gnome Session Manager
+gsettings set org.gnome.SessionManager auto-save-session true
+gsettings set org.gnome.SessionManager auto-save-session-one-shot true
+
+# Configure Ubuntu Dock
+gsettings set org.gnome.shell.extensions.dash-to-dock click-action 'focus-minimize-or-appspread'
+gsettings set org.gnome.shell.extensions.dash-to-dock dash-max-icon-size 40
+gsettings set org.gnome.shell.extensions.dash-to-dock dock-position 'BOTTOM'
+gsettings set org.gnome.shell.extensions.dash-to-dock extend-height false
+gsettings set org.gnome.shell.extensions.dash-to-dock hot-keys false
+gsettings set org.gnome.shell.extensions.dash-to-dock multi-monitor true
+gsettings set org.gnome.shell.extensions.dash-to-dock show-show-apps-button false
 
 # Configure Tactile
 gsettings set org.gnome.shell.extensions.tactile col-0 1
@@ -65,33 +79,13 @@ gsettings set org.gnome.shell.extensions.space-bar.shortcuts enable-move-to-work
 gsettings set org.gnome.shell.extensions.space-bar.shortcuts open-menu '@as []'
 gsettings set org.gnome.shell.extensions.space-bar.behavior position-index 0
 
-# Configure tweaks
-gsettings set org.gnome.mutter center-new-windows true
-
-# Configure Gnome Session Manager
-gsettings set org.gnome.SessionManager auto-save-session true
-gsettings set org.gnome.SessionManager auto-save-session-one-shot true
-
-# Configure Dash to Panel
-gsettings set org.gnome.shell.extensions.dash-to-panel appicon-margin 4
-gsettings set org.gnome.shell.extensions.dash-to-panel appicon-padding 6
-gsettings set org.gnome.shell.extensions.dash-to-panel dot-position 'TOP'
-gsettings set org.gnome.shell.extensions.dash-to-panel dot-style-focused 'DOTS'
-gsettings set org.gnome.shell.extensions.dash-to-panel dot-style-unfocused 'DOTS'
-gsettings set org.gnome.shell.extensions.dash-to-panel focus-highlight-dominant true
-gsettings set org.gnome.shell.extensions.dash-to-panel focus-highlight-opacity 10
-gsettings set org.gnome.shell.extensions.dash-to-panel panel-anchors '{"0":"MIDDLE"}'
-gsettings set org.gnome.shell.extensions.dash-to-panel panel-element-positions '{"0":[{"element":"showAppsButton","visible":false,"position":"stackedTL"},{"element":"activitiesButton","visible":false,"position":"stackedTL"},{"element":"leftBox","visible":true,"position":"stackedTL"},{"element":"taskbar","visible":true,"position":"centered"},{"element":"centerBox","visible":true,"position":"stackedBR"},{"element":"rightBox","visible":true,"position":"stackedBR"},{"element":"dateMenu","visible":true,"position":"stackedBR"},{"element":"systemMenu","visible":true,"position":"stackedBR"},{"element":"desktopButton","visible":false,"position":"stackedBR"}]}'
-gsettings set org.gnome.shell.extensions.dash-to-panel panel-positions '{"0":"TOP"}'
-gsettings set org.gnome.shell.extensions.dash-to-panel panel-sizes '{"0":32}'
-
 # Configure Unite
 gsettings set org.gnome.shell.extensions.unite desktop-name-text 'Desktop'
-gsettings set org.gnome.shell.extensions.unite extend-left-box false
 gsettings set org.gnome.shell.extensions.unite hide-app-menu-icon false
 gsettings set org.gnome.shell.extensions.unite restrict-to-primary-screen false
 gsettings set org.gnome.shell.extensions.unite window-buttons-theme 'yaru'
 gsettings set org.gnome.shell.extensions.unite window-buttons-placement 'last'
+gsettings set org.gnome.shell.extensions.unite show-legacy-tray false
 
 # Configure Window Thumbnails
 gsettings set org.gnome.shell.extensions.window-thumbnails create-tmb-shortcut "['<Super>f']"
@@ -109,6 +103,7 @@ apps=(
 	"code.desktop"
 	"org.wezfurlong.wezterm.desktop"
 	"WhatsApp.desktop"
+  "megasync.desktop"
 	"org.gnome.Settings.desktop"
 	"org.gnome.Software.desktop"
 )
