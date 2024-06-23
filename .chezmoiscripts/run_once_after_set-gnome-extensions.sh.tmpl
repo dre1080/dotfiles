@@ -2,7 +2,7 @@
 {{ if not .isWSL }}
 set -e
 
-sudo apt install -y gnome-shell-extension-manager pipx
+sudo apt install -y pipx
 pipx install gnome-extensions-cli --system-site-packages
 
 # Turn off default Ubuntu extensions
@@ -62,7 +62,7 @@ gsettings set org.gnome.shell.extensions.blur-my-shell.applications blacklist "[
 gsettings set org.gnome.shell.extensions.space-bar.behavior smart-workspace-names false
 gsettings set org.gnome.shell.extensions.space-bar.shortcuts enable-activate-workspace-shortcuts false
 gsettings set org.gnome.shell.extensions.space-bar.shortcuts enable-move-to-workspace-shortcuts true
-gsettings set org.gnome.shell.extensions.space-bar.shortcuts open-menu "@as []"
+gsettings set org.gnome.shell.extensions.space-bar.shortcuts open-menu '@as []'
 gsettings set org.gnome.shell.extensions.space-bar.behavior position-index 0
 
 # Configure tweaks
@@ -73,9 +73,10 @@ gsettings set org.gnome.SessionManager auto-save-session true
 gsettings set org.gnome.SessionManager auto-save-session-one-shot true
 
 # Configure App Icons Taskbar
-gsettings set org.gnome.shell.extensions.aztaskbar clock-position-in-panel 'CENTER'
+gsettings set org.gnome.shell.extensions.aztaskbar clock-position-in-panel 'RIGHT'
 gsettings set org.gnome.shell.extensions.aztaskbar clock-position-offset 10
 gsettings set org.gnome.shell.extensions.aztaskbar icon-size 20
+gsettings set org.gnome.shell.extensions.aztaskbar position-in-panel 'CENTER'
 gsettings set org.gnome.shell.extensions.aztaskbar position-offset 10
 gsettings set org.gnome.shell.extensions.aztaskbar show-panel-activities-button false
 gsettings set org.gnome.shell.extensions.aztaskbar indicator-color-focused 'rgb(119, 100, 216)'
@@ -141,6 +142,6 @@ gsettings set org.gnome.shell favorite-apps "$favorites_list"
 # Set theme
 gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
 gsettings set org.gnome.desktop.interface cursor-theme 'Yaru'
-gsettings set org.gnome.desktop.interface gtk-theme "Yaru-purple-dark"
-gsettings set org.gnome.desktop.interface icon-theme "Yaru-purple"
+gsettings set org.gnome.desktop.interface gtk-theme 'Yaru-purple-dark'
+gsettings set org.gnome.desktop.interface icon-theme 'Yaru-purple'
 {{ end }}
