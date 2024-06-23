@@ -16,7 +16,7 @@ gnome-extensions disable ding@rastersoft.com
 ~/.local/bin/gext install blur-my-shell@aunetx
 ~/.local/bin/gext install space-bar@luchrioh
 ~/.local/bin/gext install window-thumbnails@G-dH.github.com
-~/.local/bin/gext install aztaskbar@aztaskbar.gitlab.com
+~/.local/bin/gext install dash-to-panel@jderose9.github.com
 ~/.local/bin/gext install undecorate@sun.wxg@gmail.com
 
 ~/.local/bin/eget hardpixel/unite-shell --to /tmp/unite.zip -a shell -a .zip -d
@@ -29,7 +29,7 @@ sudo cp ~/.local/share/gnome-shell/extensions/blur-my-shell@aunetx/schemas/org.g
 sudo cp ~/.local/share/gnome-shell/extensions/space-bar@luchrioh/schemas/org.gnome.shell.extensions.space-bar.gschema.xml /usr/share/glib-2.0/schemas/
 sudo cp ~/.local/share/gnome-shell/extensions/window-thumbnails@G-dH.github.com/schemas/org.gnome.shell.extensions.window-thumbnails.gschema.xml /usr/share/glib-2.0/schemas/
 sudo cp ~/.local/share/gnome-shell/extensions/unite@hardpixel.eu/schemas/org.gnome.shell.extensions.unite.gschema.xml /usr/share/glib-2.0/schemas/
-sudo cp ~/.local/share/gnome-shell/extensions/aztaskbar@aztaskbar.gitlab.com/schemas/org.gnome.shell.extensions.aztaskbar.gschema.xml /usr/share/glib-2.0/schemas/
+sudo cp ~/.local/share/gnome-shell/extensions/dash-to-panel@jderose9.github.com/schemas/gsettings set org.gnome.shell.extensions.dash-to-panel.gschema.xml /usr/share/glib-2.0/schemas/
 sudo glib-compile-schemas /usr/share/glib-2.0/schemas/
 
 # Configure Tactile
@@ -72,15 +72,18 @@ gsettings set org.gnome.mutter center-new-windows true
 gsettings set org.gnome.SessionManager auto-save-session true
 gsettings set org.gnome.SessionManager auto-save-session-one-shot true
 
-# Configure App Icons Taskbar
-gsettings set org.gnome.shell.extensions.aztaskbar clock-position-in-panel 'RIGHT'
-gsettings set org.gnome.shell.extensions.aztaskbar clock-position-offset 10
-gsettings set org.gnome.shell.extensions.aztaskbar icon-size 20
-gsettings set org.gnome.shell.extensions.aztaskbar position-in-panel 'CENTER'
-gsettings set org.gnome.shell.extensions.aztaskbar position-offset 10
-gsettings set org.gnome.shell.extensions.aztaskbar show-panel-activities-button false
-gsettings set org.gnome.shell.extensions.aztaskbar indicator-color-focused 'rgb(119, 100, 216)'
-gsettings set org.gnome.shell.extensions.aztaskbar indicator-color-running 'rgba(204, 204, 204, 0.5)'
+# Configure Dash to Panel
+gsettings set org.gnome.shell.extensions.dash-to-panel appicon-margin 4
+gsettings set org.gnome.shell.extensions.dash-to-panel appicon-padding 6
+gsettings set org.gnome.shell.extensions.dash-to-panel dot-position 'TOP'
+gsettings set org.gnome.shell.extensions.dash-to-panel dot-style-focused 'DOTS'
+gsettings set org.gnome.shell.extensions.dash-to-panel dot-style-unfocused 'DOTS'
+gsettings set org.gnome.shell.extensions.dash-to-panel focus-highlight-dominant true
+gsettings set org.gnome.shell.extensions.dash-to-panel focus-highlight-opacity 10
+gsettings set org.gnome.shell.extensions.dash-to-panel panel-anchors '{"0":"MIDDLE"}'
+gsettings set org.gnome.shell.extensions.dash-to-panel panel-element-positions '{"0":[{"element":"showAppsButton","visible":false,"position":"stackedTL"},{"element":"activitiesButton","visible":false,"position":"stackedTL"},{"element":"leftBox","visible":true,"position":"stackedTL"},{"element":"taskbar","visible":true,"position":"centered"},{"element":"centerBox","visible":true,"position":"stackedBR"},{"element":"rightBox","visible":true,"position":"stackedBR"},{"element":"dateMenu","visible":true,"position":"stackedBR"},{"element":"systemMenu","visible":true,"position":"stackedBR"},{"element":"desktopButton","visible":false,"position":"stackedBR"}]}'
+gsettings set org.gnome.shell.extensions.dash-to-panel panel-positions '{"0":"TOP"}'
+gsettings set org.gnome.shell.extensions.dash-to-panel panel-sizes '{"0":32}'
 
 # Configure Unite
 gsettings set org.gnome.shell.extensions.unite desktop-name-text 'Desktop'
