@@ -1,0 +1,6 @@
+if ! apt list --installed | grep -q '^mpv/'; then
+  sudo apt install -y mpv
+  curl -fsSL https://raw.githubusercontent.com/tomasklaen/uosc/HEAD/installers/unix.sh | bash
+  curl -L -o ~/.config/mpv/scripts/thumbfast.lua https://raw.githubusercontent.com/po5/thumbfast/master/thumbfast.lua
+  curl -L -o ~/.config/mpv/script-opts/thumbfast.conf https://raw.githubusercontent.com/po5/thumbfast/master/thumbfast.conf
+fi
