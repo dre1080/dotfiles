@@ -7,14 +7,26 @@ sudo add-apt-repository multiverse -y
 echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | sudo debconf-set-selections
 sudo apt install -y fontconfig ttf-mscorefonts-installer
 
-font_name="JetBrainsMono Nerd Font"
-is_font_installed=$(fc-list :family="$font_name")
+jetbrains_font_name="JetBrainsMono Nerd Font"
+jetbrains_installed=$(fc-list :family="$jetbrains_font_name")
 
-if [[ -z "$is_font_installed" ]]; then
-  ~/.local/bin/eget ryanoasis/nerd-fonts --to "~/.local/share/fonts/$font_name" -a JetBrainsMono.tar.xz -f 'JetBrainsMonoNerdFont-*.ttf' --all
+if [[ -z "$jetbrains_installed" ]]; then
+  ~/.local/bin/eget ryanoasis/nerd-fonts --to "~/.local/share/fonts/$jetbrains_font_name" -a JetBrainsMono.tar.xz -f 'JetBrainsMonoNerdFont-*.ttf' --all
 
-  fc-cache -f
-
-  gsettings set org.gnome.desktop.interface monospace-font-name "$font_name 10"
+  gsettings set org.gnome.desktop.interface monospace-font-name "$jetbrains_font_name 10"
 fi
+
+aptos_font_name="Aptos"
+aptos_installed=$(fc-list :family="$aptos_font_name")
+
+if [[ -z "$aptos_installed" ]]; then
+  curl -o /tmp/Aptos.zip https://download.microsoft.com/download/8/6/0/860a94fa-7feb-44ef-ac79-c072d9113d69/Microsoft%20Aptos%20Fonts.zip
+  unzip -qq -o -d "~/.local/share/fonts/$aptos_font_name" /tmp/Aptos.zip
+  rm /tmp/Aptos.zip
+
+  gsettings set org.gnome.desktop.interface font-name "$aptos_font_name 11"
+  gsettings set org.gnome.desktop.interface document-font-name "$aptos_font_name 11"
+fi
+
+fc-cache -f
 {{ end }}
