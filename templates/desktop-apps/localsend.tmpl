@@ -1,4 +1,4 @@
-if ! apt list --installed | grep -q '^localsend/'; then
+if ! dpkg -l | grep -q '^ii\s*localsend'; then
   ~/.local/bin/eget localsend/localsend --to /tmp/localsend.deb -a linux-x86-64 -a .deb
   sudo apt install -y /tmp/localsend.deb
   rm /tmp/localsend.deb

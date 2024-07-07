@@ -1,12 +1,12 @@
 . /etc/os-release
 
-if ! apt list --installed | grep -q '^megasync/'; then
+if ! dpkg -l | grep -q '^ii\s*megasync'; then
   curl -o /tmp/mega.deb "https://mega.nz/linux/repo/xUbuntu_${VERSION_ID}/amd64/megasync-xUbuntu_${VERSION_ID}_amd64.deb"
   sudo apt install -y /tmp/mega.deb
   rm /tmp/mega.deb
 fi
 
-if ! apt list --installed | grep -q '^nautilus-megasync/'; then
+if ! dpkg -l | grep -q '^ii\s*nautilus-megasync'; then
   curl -o /tmp/nautilus-mega.deb "https://mega.nz/linux/repo/xUbuntu_${VERSION_ID}/amd64/nautilus-megasync-xUbuntu_${VERSION_ID}_amd64.deb"
   sudo apt install -y /tmp/nautilus-mega.deb
   rm /tmp/nautilus-mega.deb

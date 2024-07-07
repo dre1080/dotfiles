@@ -1,4 +1,4 @@
-if ! apt list --installed | grep -q '^freedownloadmanager/'; then
+if ! dpkg -l | grep -q '^ii\s*freedownloadmanager'; then
   curl -o /tmp/fdm.deb 'https://files2.freedownloadmanager.org/6/latest/freedownloadmanager.deb'
   sudo apt install -y /tmp/fdm.deb
   rm /tmp/fdm.deb

@@ -4,7 +4,7 @@ if [[ ! -d ~/.config/ulauncher/user-themes/libadwaita-dark ]]; then
     ~/.config/ulauncher/user-themes/libadwaita-dark
 fi
 
-if ! apt list --installed | grep -q '^ulauncher/'; then
+if ! dpkg -l | grep -q '^ii\s*ulauncher'; then
   sudo add-apt-repository universe -y
   sudo add-apt-repository ppa:agornostal/ulauncher -y
   sudo apt update

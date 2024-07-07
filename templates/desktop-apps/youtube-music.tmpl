@@ -1,4 +1,4 @@
-if ! apt list --installed | grep -q '^youtube-music/'; then
+if ! dpkg -l | grep -q 'ii\s*youtube-music/'; then
   ~/.local/bin/eget th-ch/youtube-music --to /tmp/youtube-music.deb -a amd64 -a .deb
   sudo apt install -y /tmp/youtube-music.deb
   rm /tmp/youtube-music.deb
