@@ -2,4 +2,23 @@ if ! dpkg -l | grep -q 'ii\s*youtube-music/'; then
   ~/.local/bin/eget th-ch/youtube-music --to /tmp/youtube-music.deb -a amd64 -a .deb
   sudo apt install -y /tmp/youtube-music.deb
   rm /tmp/youtube-music.deb
+
+  # Fix YouTube Music installation
+  # See: https://github.com/th-ch/youtube-music/issues/2007#issuecomment-2088995444
+
+  cat << EOF | sudo tee /etc/apparmor.d/youtube-music >/dev/null
+# This profile adds the "userns" flags to the otherwise "unrestricted" flags, this is needed, since electron uses user namespaces (userns) to run a sandbox, and this app uses electron
+
+abi <abi/4.0>,
+include <tunables/global>
+
+profile youtube-music "/opt/YouTube Music/youtube-music" flags=(unconfined) {
+  userns,
+
+  # Site-specific additions and overrides. See local/README for details.
+  include if exists <local/youtube-music>
+}
+EOF
+
+  sudo systemctl reload apparmor
 fi
