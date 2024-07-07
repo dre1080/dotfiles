@@ -11,7 +11,7 @@ font_name="JetBrainsMono Nerd Font"
 is_font_installed=$(fc-list :family="$font_name")
 
 if [[ -z "$is_font_installed" ]]; then
-  ~/.local/bin/eget  ryanoasis/nerd-fonts --to "~/.local/share/fonts/$font_name" -a JetBrainsMono.tar.xz -f 'JetBrainsMonoNerdFont-*.ttf' --all
+  ~/.local/bin/eget ryanoasis/nerd-fonts --to "~/.local/share/fonts/$font_name" -a JetBrainsMono.tar.xz -f 'JetBrainsMonoNerdFont-*.ttf' --all
 
   fc-cache -f
 
