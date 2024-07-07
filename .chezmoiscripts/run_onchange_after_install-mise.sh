@@ -14,5 +14,5 @@ sudo apt install -y  bison gettext libgd-dev libcurl4-openssl-dev libedit-dev li
 languages=(erlang elixir bun sqlite node go php rust)
 
 for language in "${languages[@]}"; do
- ~/.local/bin/mise use -y -g "$language@latest"
+  ~/.local/bin/mise use -y -g "$language@latest"
 done
