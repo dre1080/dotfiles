@@ -11,9 +11,8 @@ export PROJECTS="$HOME/Code"
 export EDITOR="micro"
 export MICRO_TRUECOLOR=1
 
-# setup podman
+# setup docker
 export DOCKER_CONFIG=${DOCKER_CONFIG:-"~/.docker"}
-export DOCKER_HOST=unix://$XDG_RUNTIME_DIR/podman/podman.sock
 
 # setup coloring for man pages
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
