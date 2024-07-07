@@ -19,6 +19,4 @@ sudo usermod -aG docker ${USER}
 echo '{"log-driver":"local","log-opts":{"max-size":"10m","max-file":"5"}}' | sudo tee /etc/docker/daemon.json > /dev/null
 
 # Install lazydocker to manage docker and docker-compose
-if [[ ! -x ~/.local/bin/lazydocker ]]; then
- ~/.local/bin/eget jesseduffield/lazydocker --to ~/.local/bin/lazydocker -a Linux_x86_64
-fi
+[[ -x ~/.local/bin/lazydocker ]] || ~/.local/bin/eget jesseduffield/lazydocker --to ~/.local/bin/lazydocker -a Linux_x86_64
