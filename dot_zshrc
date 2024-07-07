@@ -43,7 +43,6 @@ fi
 source "$ZSH/plugins.zsh"
 
 zsh-defer -c "$(zoxide init zsh)"
-zsh-defer -c "$(starship init zsh)"
 
 # Stash your environment variables in ~/.localrc. This means they'll stay out
 # of your main dotfiles repository (which may be public, like this one), but
@@ -51,3 +50,5 @@ zsh-defer -c "$(starship init zsh)"
 if [[ -a ~/.localrc ]]; then
   zsh-defer source ~/.localrc
 fi
+
+eval "$(starship init zsh)"
