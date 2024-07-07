@@ -2,7 +2,7 @@
 
 set -e
 
-sudo apt install -y bat ripgrep git-delta eza zoxide sd xclip jq fzf plocate ffmpeg aria2 fd-find
+sudo apt install -y bat ripgrep git-delta eza zoxide sd xclip jq fzf plocate ffmpeg aria2 fd-find btop
 
 ln -sf $(which batcat) ~/.local/bin/bat
 ln -sf $(which fdfind) ~/.local/bin/fd
