@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+{{ if not .isWSL }}
+set -e
+
+# Install powertop
+sudo apt install -y powertop
+
+cat << EOF | sudo tee /etc/systemd/system/powertop.service >/dev/null
+[Unit]
+Description=Powertop tunings
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/bin/powertop --auto-tune
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+sudo systemctl enable --now powertop
+{{ end }}
