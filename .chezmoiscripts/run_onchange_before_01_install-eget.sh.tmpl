@@ -2,7 +2,10 @@
 
 set -e
 
+mkdir -p ~/.local/bin
+
 if [[ ! -x ~/.local/bin/eget ]]; then
   curl zyedidia.github.io/eget.sh | sh
   mv eget ~/.local/bin/eget
+  chmod +x ~/.local/bin/eget
 fi
