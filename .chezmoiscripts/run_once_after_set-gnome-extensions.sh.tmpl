@@ -2,7 +2,7 @@
 {{ if not .isWSL }}
 set -e
 
-sudo apt install -y pipx
+sudo apt install -y pipx gnome-shell-extension-prefs
 pipx install gnome-extensions-cli --system-site-packages
 
 # Turn off default Ubuntu extensions
@@ -20,18 +20,18 @@ gnome-extensions disable ding@rastersoft.com
 
 # Manually install Unite (until released version is Gnome 46 compatible)
 ~/.local/bin/eget hardpixel/unite-shell --to /tmp/unite.zip -a shell -a .zip -d
-unzip -qq -o -d ~/.local/share/gnome-shell/extensions /tmp/unite.zip
+unzip -qq -o -d ~/.local/share/gnome-shell/extensions/unite@hardpixel.eu /tmp/unite.zip
 rm /tmp/unite.zip
+gnome-extensions enable unite@hardpixel.eu
 
 # Compile gsettings schemas in order to be able to set them
-sudo cp ~/.local/share/gnome-shell/extensions/tactile@lundal.io/schemas/org.gnome.shell.extensions.tactile.gschema.xml /usr/share/glib-2.0/schemas/
-sudo cp ~/.local/share/gnome-shell/extensions/blur-my-shell@aunetx/schemas/org.gnome.shell.extensions.blur-my-shell.gschema.xml /usr/share/glib-2.0/schemas/
-sudo cp ~/.local/share/gnome-shell/extensions/space-bar@luchrioh/schemas/org.gnome.shell.extensions.space-bar.gschema.xml /usr/share/glib-2.0/schemas/
-sudo cp ~/.local/share/gnome-shell/extensions/window-thumbnails@G-dH.github.com/schemas/org.gnome.shell.extensions.window-thumbnails.gschema.xml /usr/share/glib-2.0/schemas/
-sudo cp ~/.local/share/gnome-shell/extensions/Vitals@CoreCoding.com/schemas/org.gnome.shell.extensions.vitals.gschema.xml /usr/share/glib-2.0/schemas/
-sudo cp ~/.local/share/gnome-shell/extensions/unite@hardpixel.eu/schemas/org.gnome.shell.extensions.unite.gschema.xml /usr/share/glib-2.0/schemas/
+sudo cp ~/.local/share/gnome-shell/extensions/tactile\@lundal.io/schemas/org.gnome.shell.extensions.tactile.gschema.xml /usr/share/glib-2.0/schemas/
+sudo cp ~/.local/share/gnome-shell/extensions/blur-my-shell\@aunetx/schemas/org.gnome.shell.extensions.blur-my-shell.gschema.xml /usr/share/glib-2.0/schemas/
+sudo cp ~/.local/share/gnome-shell/extensions/space-bar\@luchrioh/schemas/org.gnome.shell.extensions.space-bar.gschema.xml /usr/share/glib-2.0/schemas/
+sudo cp ~/.local/share/gnome-shell/extensions/window-thumbnails\@G-dH.github.com/schemas/org.gnome.shell.extensions.window-thumbnails.gschema.xml /usr/share/glib-2.0/schemas/
+sudo cp ~/.local/share/gnome-shell/extensions/Vitals\@CoreCoding.com/schemas/org.gnome.shell.extensions.vitals.gschema.xml /usr/share/glib-2.0/schemas/
+sudo cp ~/.local/share/gnome-shell/extensions/unite\@hardpixel.eu/schemas/org.gnome.shell.extensions.unite.gschema.xml /usr/share/glib-2.0/schemas/
 sudo glib-compile-schemas /usr/share/glib-2.0/schemas/
-
 
 # Configure tweaks
 gsettings set org.gnome.mutter center-new-windows true
