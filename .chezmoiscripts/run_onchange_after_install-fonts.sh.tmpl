@@ -7,6 +7,8 @@ sudo add-apt-repository multiverse -y
 echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | sudo debconf-set-selections
 sudo apt install -y fontconfig ttf-mscorefonts-installer
 
+mkdir -p ~/.local/share/fonts
+
 jetbrains_font_name="JetBrainsMono Nerd Font"
 jetbrains_installed=$(fc-list :family="$jetbrains_font_name")
 
@@ -21,7 +23,8 @@ aptos_installed=$(fc-list :family="$aptos_font_name")
 
 if [[ -z "$aptos_installed" ]]; then
   curl -o /tmp/Aptos.zip https://download.microsoft.com/download/8/6/0/860a94fa-7feb-44ef-ac79-c072d9113d69/Microsoft%20Aptos%20Fonts.zip
-  unzip -qq -o -d "~/.local/share/fonts/$aptos_font_name" /tmp/Aptos.zip
+  mkdir -p "~/.local/share/fonts/$aptos_font_name"
+  unzip -qq -d "~/.local/share/fonts/$aptos_font_name" /tmp/Aptos.zip
   rm /tmp/Aptos.zip
 
   gsettings set org.gnome.desktop.interface font-name "$aptos_font_name 11"
