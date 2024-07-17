@@ -1,5 +1,6 @@
 theme "github-dark"
 default_layout "compact"
+default_mode "locked"
 on_force_close "quit"
 
 keybinds {
