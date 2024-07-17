@@ -1,3 +1,0 @@
-flatpak install -y flathub org.wezfurlong.wezterm
-grep -q 'alias wezterm\s*=' ~/.localrc || echo "alias wezterm='flatpak run org.wezfurlong.wezterm'" >> ~/.localrc
-gsettings set org.gnome.desktop.default-applications.terminal exec wezterm

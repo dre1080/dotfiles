@@ -4,7 +4,7 @@ set -e
 
 sudo apt install -y bat ripgrep git-delta eza zoxide sd xclip jq fzf plocate ffmpeg aria2 fd-find btop
 
-# Remove Btop entry for one that runs in wezterm
+# Remove Btop entry for one that runs in alacritty
 sudo rm -rf /usr/share/applications/btop.desktop
 
 # Replacing this with btop
@@ -24,3 +24,5 @@ fi
 [[ -x ~/.local/bin/starship ]] || ~/.local/bin/eget starship/starship --to ~/.local/bin/starship -a x86_64 -a linux-gnu
 
 [[ -x ~/.local/bin/trash ]] || ~/.local/bin/eget oberblastmeister/trashy --to ~/.local/bin/trash -a x86_64 -a linux-gnu
+
+[[ -x ~/.local/bin/zellij ]] || ~/.local/bin/eget zellij-org/zellij --to ~/.local/bin/zellij -a x86_64 -a linux

@@ -1,0 +1,7 @@
+theme "github-dark"
+default_layout "compact"
+on_force_close "quit"
+
+keybinds {
+  unbind "Ctrl q"
+}
