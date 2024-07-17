@@ -11,8 +11,9 @@ export ZSH=$HOME/.config/zsh
 export PROJECTS="$HOME/Code"
 
 # preferred editor
-export EDITOR="micro"
 export MICRO_TRUECOLOR=1
+export EDITOR="micro"
+export SUDO_EDITOR="$EDITOR"
 
 # setup docker
 export DOCKER_CONFIG=${DOCKER_CONFIG:-"~/.docker"}
