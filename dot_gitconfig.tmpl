@@ -33,7 +33,7 @@
   colorMoved = default
 
 [alias]
-  fix-perm = "git diff -p | grep -E \"^(diff|old mode|new mode)\" | sed -e \"s/^old/NEW/;s/^new/old/;s/^NEW/new/\" | git apply"
+  fix-perm = "!git diff -p | grep -E \"^(diff|old mode|new mode)\" | sed -e \"s/^old/NEW/;s/^new/old/;s/^NEW/new/\" | git apply"
   co = checkout
   br = branch
   ci = commit
