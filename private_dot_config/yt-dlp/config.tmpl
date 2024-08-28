@@ -3,6 +3,6 @@
 --convert-subs srt
 --downloader aria2c
 --downloader-args aria2c:'--min-split-size=1M --max-connection-per-server=16 --max-concurrent-downloads=16 --split=16'
--S "filesize:500M,res:1080,codec,br"
+-S "res:1080,codec,br"
 -o "%(playlist_title)s/%(playlist_index)s - %(title)s.%(ext)s"
 -P {{ if .isWSL }}"$WIN_HOME/Downloads/YouTube"{{ else }}"~/Downloads/YouTube"{{ end }}
