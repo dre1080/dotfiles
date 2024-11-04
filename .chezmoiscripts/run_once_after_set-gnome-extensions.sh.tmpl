@@ -20,11 +20,10 @@ gnome-extensions disable ding@rastersoft.com
 ~/.local/bin/gext install undecorate@sun.wxg@gmail.com
 ~/.local/bin/gext install tophat@fflewddur.github.io
 
-# Manually install Unite (until released version is Gnome 46 compatible)
-~/.local/bin/eget hardpixel/unite-shell --to /tmp/unite.zip -a shell -a .zip -d
-unzip -qq -o -d ~/.local/share/gnome-shell/extensions/unite@hardpixel.eu /tmp/unite.zip
+# Manually install Unite
+~/.local/bin/eget hardpixel/unite-shell --to /tmp/unite.zip -d
+gnome-extensions install -f /tmp/unite.zip
 rm /tmp/unite.zip
-gnome-extensions enable unite@hardpixel.eu
 
 # Compile gsettings schemas in order to be able to set them
 sudo cp ~/.local/share/gnome-shell/extensions/tactile\@lundal.io/schemas/org.gnome.shell.extensions.tactile.gschema.xml /usr/share/glib-2.0/schemas/
