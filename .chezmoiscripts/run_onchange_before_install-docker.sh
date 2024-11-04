@@ -17,6 +17,3 @@ sudo usermod -aG docker ${USER}
 
 # Limit log size to avoid running out of disk
 echo '{"log-driver":"json-file","log-opts":{"max-size":"10m","max-file":"5"}}' | sudo tee /etc/docker/daemon.json
-
-# Install lazydocker to manage docker and docker-compose
-[[ -x ~/.local/bin/lazydocker ]] || ~/.local/bin/eget jesseduffield/lazydocker --to ~/.local/bin/lazydocker -a Linux_x86_64
