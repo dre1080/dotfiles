@@ -22,7 +22,6 @@ function mod.apply_to_config(config)
     { key = 'v',          mods = 'CTRL',                action = act.PasteFrom 'Clipboard' },
     { key = 'P',          mods = 'SHIFT|CTRL',          action = act.ActivateCommandPalette },
     { key = 'F11',        action = act.ToggleFullScreen },
-    { key = 'w',          mods = 'SUPER',               action = act.CloseCurrentTab{ confirm = false } },
     { key = 'R',          mods = 'SHIFT|CTRL',          action = act.ReloadConfiguration },
     { key = '+',          mods = 'CTRL',                action = act.IncreaseFontSize },
     { key = '-',          mods = 'CTRL',                action = act.DecreaseFontSize },
