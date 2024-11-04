@@ -1,5 +1,0 @@
-import = [ "~/.config/alacritty/alacritty.toml" ]
-
-[window]
-padding.x = 30
-padding.y = 30
