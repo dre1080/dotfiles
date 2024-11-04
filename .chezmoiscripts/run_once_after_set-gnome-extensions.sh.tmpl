@@ -2,7 +2,9 @@
 {{ if not .isWSL }}
 set -e
 
-sudo apt install -y pipx gnome-shell-extension-prefs
+sudo apt install -y pipx gnome-shell-extension-prefs \
+  gir1.2-gtop-2.0 gir1.2-clutter-1.0 # tophat deps
+
 pipx install gnome-extensions-cli --system-site-packages
 
 # Turn off default Ubuntu extensions
@@ -16,7 +18,7 @@ gnome-extensions disable ding@rastersoft.com
 ~/.local/bin/gext install space-bar@luchrioh
 ~/.local/bin/gext install window-thumbnails@G-dH.github.com
 ~/.local/bin/gext install undecorate@sun.wxg@gmail.com
-~/.local/bin/gext install Vitals@CoreCoding.com
+~/.local/bin/gext install tophat@fflewddur.github.io
 
 # Manually install Unite (until released version is Gnome 46 compatible)
 ~/.local/bin/eget hardpixel/unite-shell --to /tmp/unite.zip -a shell -a .zip -d
@@ -29,7 +31,7 @@ sudo cp ~/.local/share/gnome-shell/extensions/tactile\@lundal.io/schemas/org.gno
 sudo cp ~/.local/share/gnome-shell/extensions/blur-my-shell\@aunetx/schemas/org.gnome.shell.extensions.blur-my-shell.gschema.xml /usr/share/glib-2.0/schemas/
 sudo cp ~/.local/share/gnome-shell/extensions/space-bar\@luchrioh/schemas/org.gnome.shell.extensions.space-bar.gschema.xml /usr/share/glib-2.0/schemas/
 sudo cp ~/.local/share/gnome-shell/extensions/window-thumbnails\@G-dH.github.com/schemas/org.gnome.shell.extensions.window-thumbnails.gschema.xml /usr/share/glib-2.0/schemas/
-sudo cp ~/.local/share/gnome-shell/extensions/Vitals\@CoreCoding.com/schemas/org.gnome.shell.extensions.vitals.gschema.xml /usr/share/glib-2.0/schemas/
+sudo cp ~/.local/share/gnome-shell/extensions/tophat\@fflewddur.github.io/schemas/org.gnome.shell.extensions.tophat.gschema.xml /usr/share/glib-2.0/schemas/
 sudo cp ~/.local/share/gnome-shell/extensions/unite\@hardpixel.eu/schemas/org.gnome.shell.extensions.unite.gschema.xml /usr/share/glib-2.0/schemas/
 sudo glib-compile-schemas /usr/share/glib-2.0/schemas/
 
@@ -100,10 +102,17 @@ gsettings set org.gnome.shell.extensions.window-thumbnails position-custom false
 gsettings set org.gnome.shell.extensions.window-thumbnails schema-migrated true
 gsettings set org.gnome.shell.extensions.window-thumbnails mouse-hover-delay 2147483647
 
+# Configure TopHat
+gsettings set org.gnome.shell.extensions.tophat show-icons false
+gsettings set org.gnome.shell.extensions.tophat show-cpu false
+gsettings set org.gnome.shell.extensions.tophat show-disk false
+gsettings set org.gnome.shell.extensions.tophat show-mem false
+gsettings set org.gnome.shell.extensions.tophat network-usage-unit bits
+
 # Favorite apps for dock
 apps=(
-	"google-chrome.desktop"
 	"org.gnome.Nautilus.desktop"
+	"google-chrome.desktop"
 	"code.desktop"
 	"WhatsApp.desktop"
 	"steam.desktop"
