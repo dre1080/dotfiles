@@ -7,9 +7,6 @@ sudo apt install -y bat ripgrep git-delta eza zoxide xclip jq fzf plocate ffmpeg
 # Remove Btop entry for one that runs in alacritty
 sudo rm -rf /usr/share/applications/btop.desktop
 
-# Replacing this with btop
-sudo rm -rf /usr/share/applications/org.gnome.SystemMonitor.desktop
-
 ln -sf $(which batcat) ~/.local/bin/bat
 ln -sf $(which fdfind) ~/.local/bin/fd
 
