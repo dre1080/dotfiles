@@ -31,6 +31,7 @@ config.window_padding = {
   top = '14px',
   bottom = '14px',
 }
+config.window_close_confirmation = 'NeverPrompt'
 
 local keybindings = require 'keybindings'
 keybindings.apply_to_config(config)
