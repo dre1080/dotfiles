@@ -1,3 +1,5 @@
+ZSH_DISABLE_COMPFIX="true"
+
 export LSCOLORS="exfxcxdxbxegedabagacad"
 export CLICOLOR=true
 
