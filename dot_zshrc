@@ -1,9 +1,6 @@
 # skip the verification of insecure directories
 ZSH_DISABLE_COMPFIX="true"
 
-# disable for mix commands as it slows it down too much
-ZSH_AUTOSUGGEST_HISTORY_IGNORE="mix *"
-
 # shortcut to this dotfiles path is $ZSH
 export ZSH=$HOME/.config/zsh
 

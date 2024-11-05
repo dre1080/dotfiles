@@ -14,10 +14,9 @@
 
 [".config/zsh/plugins/zsh-autocomplete"]
   type = "archive"
-  url = "https://github.com/marlonrichert/zsh-autocomplete/archive/master.tar.gz"
+  url = "https://github.com/marlonrichert/zsh-autocomplete/archive/adfade31a84dfa512a7e3583d567ee19ac4a7936.tar.gz"
   exact = true
   stripComponents = 1
-  refreshPeriod = "168h"
 
 [".config/zsh/plugins/zsh-autosuggestions"]
   type = "archive"
