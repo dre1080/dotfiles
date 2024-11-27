@@ -33,7 +33,7 @@ config.window_padding = {
 }
 config.window_close_confirmation = 'NeverPrompt'
 
-local keybindings = require 'keybindings'
+local keybindings = require 'key_bindings'
 keybindings.apply_to_config(config)
 
 local mouse_bindings = require 'mouse_bindings'

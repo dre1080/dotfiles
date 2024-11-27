@@ -21,15 +21,10 @@ function mod.apply_to_config(config)
     },
     { key = 'v',          mods = 'CTRL',                action = act.PasteFrom 'Clipboard' },
     { key = 'P',          mods = 'SHIFT|CTRL',          action = act.ActivateCommandPalette },
-    { key = 'F11',        action = act.ToggleFullScreen },
     { key = 'R',          mods = 'SHIFT|CTRL',          action = act.ReloadConfiguration },
     { key = '+',          mods = 'CTRL',                action = act.IncreaseFontSize },
     { key = '-',          mods = 'CTRL',                action = act.DecreaseFontSize },
     { key = '0',          mods = 'CTRL',                action = act.ResetFontSize },
-    { key = 'LeftArrow',  mods = 'ALT',                 action = act.ActivatePaneDirection 'Left' },
-    { key = 'RightArrow', mods = 'ALT',                 action = act.ActivatePaneDirection 'Right' },
-    { key = 'UpArrow',    mods = 'ALT',                 action = act.ActivatePaneDirection 'Up' },
-    { key = 'DownArrow',  mods = 'ALT',                 action = act.ActivatePaneDirection 'Down' },
     {
       key = 't',
       mods = 'ALT|SHIFT',
@@ -77,14 +72,6 @@ function mod.apply_to_config(config)
     { key = 'j',          mods = 'ALT',   action = act.ActivatePaneDirection 'Down' },
     { key = 'PageUp',     mods = 'SHIFT', action = act.ScrollByPage(-1) },
     { key = 'PageDown',   mods = 'SHIFT', action = act.ScrollByPage(1) },
-    {
-      key = ',',
-      mods = 'CTRL',
-      action = act.SpawnCommandInNewTab {
-        cwd = os.getenv('WEZTERM_CONFIG_DIR'),
-        args = { 'micro', os.getenv('WEZTERM_CONFIG_FILE') },
-      },
-    },
   }
 
   config.key_tables = {
