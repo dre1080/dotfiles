@@ -1,0 +1,11 @@
+# Usage: cp --help 2>&1 | bathelp
+# Description: Colorize help text. It will refuse to process the command if it would have
+# resulted in an incorrect command.
+bathelp() {
+  if [[ $# > 0 ]]; then
+    echo "Bad use of global --help alias detected! Please use \--help instead, optionally adding | bathelp manually"
+    return
+  fi
+
+ bat --language=help --style=plain
+}
