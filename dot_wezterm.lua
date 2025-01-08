@@ -42,4 +42,7 @@ mouse_bindings.apply_to_config(config)
 local wayland_gnome = require 'wayland_gnome'
 wayland_gnome.apply_to_config(config)
 
+local bar = wezterm.plugin.require('https://github.com/adriankarlen/bar.wezterm')
+bar.apply_to_config(config)
+
 return config
