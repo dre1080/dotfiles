@@ -1,36 +1,18 @@
 local wezterm = require 'wezterm'
-local act = wezterm.action
+local mux = wezterm.mux
 
-wezterm.on('gui-startup', function(cmd)
-  local mux = wezterm.mux
-
-  local tab, pane, window = mux.spawn_window(cmd or {})
-
-  window:gui_window():focus()
-
-  local command_str = ""
-  if cmd and cmd.args then
-    for _, arg in ipairs(cmd.args) do
-      command_str = command_str .. arg .. " "
+wezterm.on('gui-attached', function(domain)
+  local workspace = mux.get_active_workspace()
+  for _, window in ipairs(mux.all_windows()) do
+    if window:get_workspace() == workspace then
+      window:gui_window():focus()
     end
   end
-
-  if string.find(command_str, "btop") then
-    return
-  end
-
-  local right_pane = pane:split {
-    direction = 'Right',
-    size = 0.5,
-    args = { 'btop' },
-  }
-
-  pane:activate()
 end)
 
 wezterm.on('window-focus-changed', function(window, pane)
   -- Force activation when window focus changes
   if window:is_focused() then
-    window:gui_window():focus()
+    pane:activate()
   end
 end)
